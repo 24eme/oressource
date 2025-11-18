@@ -197,3 +197,7 @@ pre {
 .garbage.ultime-1::before {
   content: "✓ Oui";
 }
+
+.active {
+  background: #eee;
+}

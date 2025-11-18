@@ -33,6 +33,11 @@ $can_config = is_allowed_config();
 
 // FIXME: mostly a fix of
 $nav = filter_visibles(new_nav_sorties());
+
+$activeTab = explode('/ifaces/', $_SERVER['PHP_SELF'])[1];
+if ($_SERVER['QUERY_STRING'] && str_contains($_SERVER['QUERY_STRING'], 'numero=')) {
+  $activeNumber = explode('numero=', $_SERVER['QUERY_STRING'])[1];
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -63,175 +68,177 @@ $nav = filter_visibles(new_nav_sorties());
           <a class="navbar-brand" href="../ifaces/index.php">Oressource</a>
         </div>
 
-        <div class="navbar-collapse collapse  navbar-right">
+        <div class="navbar-collapse collapse navbar-right">
           <ul class="nav navbar-nav">
-            <?php if (is_allowed_collecte()) { ?>
-              <li class="nav navbar-nav dropdown">
+
+            <?php if (is_allowed_vente()):?>
+              <?php if (count(filter_visibles(points_ventes($bdd))) < 2):?>
+                <li class="<?php if ($activeTab == 'ventes.php'): ?>active<?php endif; ?>">
+                  <a href="../ifaces/ventes.php?numero=<?php echo filter_visibles(points_ventes($bdd))[0]['id'] ?>">Point de vente</a>
+                </li>
+              <?php else: ?>
+              <li class="nav navbar-nav dropdown<?php if ($activeTab == 'ventes.php'): ?> active<?php endif; ?>">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Points de vente<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <?php foreach (filter_visibles(points_ventes($bdd)) as $point_vente): ?>
+                      <?php if (is_allowed_vente_id($point_vente['id'])): ?>
+                        <li class="<?php if ($activeTab == 'ventes.php' && $point_vente['id'] == $activeNumber):?>active<?php endif;?>">
+                          <a href="../ifaces/ventes.php?numero=<?php echo "{$point_vente['id']}"; ?>"
+                            ><?php echo $point_vente['nom']; ?></a>
+                        </li>
+                        <?php endif; ?>
+                      <?php endforeach; ?>
+                    </ul>
+                  <?php endif;?>
+                </li>
+              <?php endif; ?>
+
+
+            <?php if (is_allowed_collecte()): ?>
+              <?php if (count(filter_visibles(points_collectes($bdd))) < 2): ?>
+                <li class="<?php if ($activeTab == 'collecte.php'): ?>active<?php endif; ?>">
+                  <a href="../ifaces/collecte.php?numero=<?php echo filter_visibles(points_collectes($bdd))[0]['id'] ?>">Point de collecte</a>
+                </li>
+              <?php else: ?>
+              <li class="nav navbar-nav dropdown<?php if ($activeTab == 'ventes.php'): ?> active<?php endif; ?>">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Points de collecte<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <?php foreach (filter_visibles(points_collectes($bdd)) as $point_collecte) {
-                    if (is_allowed_collecte_id($point_collecte['id'])) {
-                      ?>
-                      <li>
+                  <?php foreach (filter_visibles(points_collectes($bdd)) as $point_collecte): ?>
+                    <?php if (is_allowed_collecte_id($point_collecte['id'])): ?>
+                      <li class="<?php if ($activeTab == 'ventes.php' && $point_collecte['id'] == $activeNumber):?>active<?php endif;?>">
                         <a href="../ifaces/collecte.php?numero=<?= "{$point_collecte['id']}"; ?>"><?= $point_collecte['nom']; ?></a>
                       </li>
-                    <?php }
-                  }
-                  ?>
+                    <?php endif; ?>
+                  <?php endforeach; ?>
                 </ul>
+              <?php endif; ?>
               </li>
-              <?php
-            }
-            ?>
+            <?php endif; ?>
 
-            <?php if (is_allowed_sortie() && count($nav) > 0) { ?>
-              <li class="nav navbar-nav dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sorties hors-boutique<b class="caret"></b></a>
+            <?php if (is_allowed_sortie() && count($nav)): ?>
+              <?php if (count(filter_visibles(points_sorties($bdd))) < 2): ?>
+                <li class="<?php if ($activeTab == 'sorties.php' || $activeTab == 'sortiesr.php' || $activeTab == 'sortiesd.php' || $activeTab == 'sortiesp.php'): ?>active<?php endif; ?>">
+                  <a href="<?php echo $nav[0]['href'] ?>?numero=<?php echo filter_visibles(points_sorties($bdd))[0]['id'] ?>">Sortie hors-boutique</a>
+                </li>
+              <?php else: ?>
+                <li class="nav navbar-nav dropdown<?php if (preg_match('/sorties[pcrd]?\.php/', $activeTab)): ?> active<?php endif; ?>">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sorties hors-boutique<b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <?php foreach (filter_visibles(points_sorties($bdd)) as $point_sortie) {
-                      // ⚠ Hack to fix https://github.com/mart1ver/oressource/issues/370
-                      if (is_allowed_sortie_id($point_sortie['id'])) { ?>
-                        <li>
-                          <a href="<?= "{$nav[0]['href']}?numero={$point_sortie['id']}" ?>"><?= $point_sortie['nom']; ?></a>
+                    <?php foreach (filter_visibles(points_sorties($bdd)) as $point_sortie): ?>
+                      <?php if (is_allowed_sortie_id($point_sortie['id'])): ?>
+                        <li class="<?php if (preg_match('/sorties[pcrd]?\.php/', $activeTab) && $point_sortie['id'] == $activeNumber):?>active<?php endif;?>">
+                          <a href="<?php echo "{$nav[0]['href']}?numero={$point_sortie['id']}" ?>"><?php echo $point_sortie['nom']; ?></a>
                         </li>
-                        <?php
-                      }
-                    }
-                    ?>
-                </ul>
+                      <?php endif; ?>
+                    <?php endforeach; ?>
+                  </ul>
+                <?php endif; ?>
               </li>
-              <?php
-            }
-            ?>
+            <?php endif; ?>
 
-            <?php if (is_allowed_vente()) { ?>
-              <li class="nav navbar-nav dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Points de vente<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <?php foreach (filter_visibles(points_ventes($bdd)) as $point_vente) {
-                    if (is_allowed_vente_id($point_vente['id'])) {
-                        ?>
-                        <li>
-                          <a href="../ifaces/ventes.php?numero=<?= "{$point_vente['id']}"; ?>"
-                             ><?= $point_vente['nom']; ?></a>
-                        </li>
-                        <?php
-                      }
-                    }
-                    ?>
-                </ul>
-              </li>
-              <?php
-            }
-            ?>
-
-            <?php if (is_allowed_bilan()) { ?>
-              <li>
+            <?php if (is_allowed_bilan()): ?>
+              <li class="<?php if ($activeTab == 'bilanc.php'): ?>active<?php endif;?>">
                 <a href="../ifaces/bilanc.php?date1=<?= $now_date; ?>&date2=<?= $now_date; ?>&numero=0">Bilans</a>
               </li>
-              <?php
-            }
-            ?>
+            <?php endif; ?>
 
-            <?php if ($can_gestion || $can_verif || $can_users || $can_parners || $can_config) { ?>
+            <?php if ($can_gestion || $can_verif || $can_users || $can_parners || $can_config): ?>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestion<b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span><b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <!-- Grille des prix et masse des bacs(gestion quotidienne) -->
-                  <?php if ($can_gestion) { ?>
-                    <li>
+                  <?php if ($can_gestion): ?>
+                    <li class="<?php if ($activeTab == 'grilles_prix.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/grilles_prix.php?typo=1">Grille des prix</a>
                     </li>
-                    <li>
+                    <li class="<?php if ($activeTab == 'edition_types_contenants.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/edition_types_contenants.php">Bacs et chariots</a>
                     </li>
-                    <li>
+                    <li class="<?php if ($activeTab == 'edition_types_poubelles.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/edition_types_poubelles.php">Types de poubelles</a>
                     </li>
                     <li class="divider"></li>
-                  <?php } ?>
+                  <?php endif; ?>
 
                   <!-- Gestion et verification -->
-                  <?php if ($can_verif) { ?>
-                    <li>
+                  <?php if ($can_verif): ?>
+                    <li class="<?php if ($activeTab == 'verif_collecte.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/verif_collecte.php?date1=<?= $now_date; ?>&date2=<?= $now_date; ?>&numero=1">Vérifier les collectes</a>
                     </li>
-                    <li>
+                    <li class="<?php if ($activeTab == 'verif_sorties.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/verif_sorties.php?date1=<?= $now_date; ?>&date2=<?= $now_date; ?>&numero=1">Vérifier les sorties hors-boutique</a>
                     </li>
-                    <li>
+                    <li class="<?php if ($activeTab == 'verif_vente.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/verif_vente.php?date1=<?= $now_date; ?>&date2=<?= $now_date; ?>&numero=1">Vérifier les ventes</a>
                     </li>
                     <li class="divider"></li>
-                  <?php } ?>
+                  <?php endif; ?>
 
                   <!-- Utilisateurs -->
-                  <?php if ($can_users) { ?>
-                    <li>
+                  <?php if ($can_users): ?>
+                    <li class="<?php if ($activeTab == 'utilisateurs.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/utilisateurs.php">Utilisateurs</a>
                     </li>
                     <li class="divider"></li>
-                  <?php } ?>
+                  <?php endif; ?>
 
                   <!-- Recycleur et conventions de sortie -->
-                  <?php if ($can_parners) { ?>
-                    <li>
+                  <?php if ($can_parners): ?>
+                    <li class="<?php if ($activeTab == 'edition_filieres_sortie.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/edition_filieres_sortie.php">Entreprises de recyclage</a>
                     </li>
-                    <li>
+                    <li class="<?php if ($activeTab == 'conventions_sortie.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/conventions_sortie.php">Conventions avec les partenaires</a>
                     </li>
                     <li class="divider"></li>
-                  <?php } ?>
+                  <?php endif; ?>
 
                   <!-- Configuration -->
-                  <?php if ($can_config) { ?>
-                    <li>
+                  <?php if ($can_config): ?>
+                    <li class="<?php if ($activeTab == 'types_sortie.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/types_sortie.php">Types de sorties hors-boutique</a>
                     </li>
-                    <li>
+                    <li class="<?php if ($activeTab == 'types_collecte.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/types_collecte.php">Types de collectes</a>
                     </li>
 
                     <li class="divider"></li>
 
-                    <li>
+                    <li class="<?php if ($activeTab == 'types_dechets.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/types_dechets.php">Types d'objets collectés</a>
                     </li>
-                    <li>
+                    <li class="<?php if ($activeTab == 'types_dechets_evac.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/types_dechets_evac.php">Types de déchets evacués</a>
                     </li>
 
                     <li class="divider"></li>
 
-                    <li>
+                    <li class="<?php if ($activeTab == 'edition_points_collecte.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/edition_points_collecte.php">Points de collecte</a>
                     </li>
-                    <li>
+                    <li class="<?php if ($activeTab == 'edition_points_sorties.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/edition_points_sorties.php">Points de sortie hors-boutique</a>
                     </li>
-                    <li>
+                    <li class="<?php if ($activeTab == 'edition_points_vente.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/edition_points_vente.php">Points de vente</a>
                     </li>
 
                     <li class="divider"></li>
-                    <li>
+                    <li class="<?php if ($activeTab == 'moyens_paiment.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/moyens_paiment.php">Moyens de paiment</a>
                     </li>
-                    <li>
+                    <li class="<?php if ($activeTab == 'edition_localites.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/edition_localites.php">Localités</a>
                     </li>
-                    <li>
+                    <li class="<?php if ($activeTab == 'structures.php'): ?>active<?php endif;?>">
                       <a href="../ifaces/structures.php">Configuration de Oressource</a>
                     </li>
-                  <?php } ?>
+                  <?php endif; ?>
                 </ul>
               </li>
-              <?php
-            }
-            ?>
+            <?php endif; ?>
 
-            <?php if (is_valid_session()) { ?>
+            <?php if (is_valid_session()): ?>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -243,30 +250,24 @@ $nav = filter_visibles(new_nav_sorties());
                   </li>
                 </ul>
               </li>
-              <?php
-            }
-            ?>
+            <?php endif; ?>
           </ul>
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
 
-    <?php if (isset($_GET['err'])) { ?>
+    <?php if (isset($_GET['err'])): ?>
       <div class='alert alert-danger' style='width:80%;margin:auto;'>
         <p><?= $_GET['err']; ?></p>
       </div>
-      <?php
-    }
-    ?>
+    <?php endif; ?>
 
-    <?php if (isset($_GET['msg'])) { ?>
+    <?php if (isset($_GET['msg'])): ?>
       <div class='alert alert-success alert-dismissable' style='width:80%;margin:auto;'>
         <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
         <p><?= $_GET['msg']; ?></p>
       </div>
-      <?php
-    }
-    ?>
+    <?php endif;?>
 
     <script src="../js/jquery-2.1.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
