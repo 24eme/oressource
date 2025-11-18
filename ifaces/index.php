@@ -73,7 +73,7 @@ if (is_valid_session()) {
   'use strict'
   // TODO: Pensez à me change a chaque publication de version
   // TODO-DO: si on a un build système change moi automatiquement.
-  const user_name = `<?= $_SESSION['prenom']; ?>`;
+  const user_name = `<?php echo $_SESSION['prenom']; ?>`;
   const current_version_number = 'v0.3.0';
   const current_version_published = new Date('2020-10-25T11:24:49Z');
   const greeting = `Bienvenue à bord d'Oressource ${current_version_number} ${user_name}!`;
@@ -103,33 +103,39 @@ if (is_valid_session()) {
     });
     </script>
 
-  <div class="page-header">
-    <div class="container" id="bienvenue">
-      <h1></h1>
-      <p>Oressource est un outil libre de quantification et de mise en bilan dédié aux structures du ré-emploi</p>
-    </div>
-  </div> <!-- /container -->
 
   <div class="container" id="actualise">
     <div class="row">
+      <div class="col-md-11">
+        <h1>Bilan global</h1>
+
+
+        <ul class="nav nav-tabs" style="margin-top: 67px;">
+          <li class="active"><a>Récapitulatif</a></li>
+          <li><a href="bilanc.php?date1=<?php echo (new DateTime())->format('d-m-Y'); ?>&date2=<?php echo (new DateTime())->format('d-m-Y'); ?>&numero=0">Collectes</a></li>
+          <li><a href="bilanhb.php?numero=0&date1=<?php echo (new DateTime())->format('d-m-Y'); ?>&date2=<?php echo (new DateTime())->format('d-m-Y'); ?>">Sorties hors-boutique</a></li>
+          <li><a href="bilanv.php?numero=0&date1=<?php echo (new DateTime())->format('d-m-Y'); ?>&date2=<?php echo (new DateTime())->format('d-m-Y'); ?>">Ventes</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-4" >
-        <h3>Collecté aujourd'hui: <?= $masse_collectes . ' Kgs.'; ?></h3>
-        <?php if ($masse_collectes > 0.000) { ?>
+        <h3>Collecté aujourd'hui: <?php echo $masse_collectes . ' Kgs.'; ?></h3>
+        <?php if ($masse_collectes > 0.000): ?>
           <div id="graphj" style="height: 180px;"></div>
-          <?php if ($validUser) { ?>
-            <p><a href="../ifaces/bilanc.php?date1=<?= date('d-m-Y'); ?>&date2=<?= date('d-m-Y'); ?>&numero=0" class="btn btn-default"  role="button">Détails &raquo;</a></p>
-            <?php
-          }
-        } else { ?>
+          <?php if ($validUser): ?>
+            <p><a href="../ifaces/bilanc.php?date1=<?php echo date('d-m-Y'); ?>&date2=<?php echo date('d-m-Y'); ?>&numero=0" class="btn btn-default"  role="button">Détails &raquo;</a></p>
+          <?php endif; ?>
+        <?php else: ?>
           <img src="../images/nodata.jpg" class="img-responsive" alt="Responsive image">
-        <?php } ?>
+        <?php endif; ?>
       </div>
       <div class="col-md-4">
-        <h3>Evacué aujourd'hui: <?= $masse_sorties . ' Kgs.'; ?></h3>
+        <h3>Evacué aujourd'hui: <?php echo $masse_sorties . ' Kgs.'; ?></h3>
         <?php if ($masse_sorties > 0.000) { ?>
           <div id="graphSortie" style="height: 180px;"></div>
           <?php if ($validUser) { ?>
-            <p><a class="btn btn-default" href="../ifaces/bilanhb.php?date1=<?= date('d-m-Y'); ?>&date2=<?= date('d-m-Y'); ?>" role="button">Détails &raquo;</a></p>
+            <p><a class="btn btn-default" href="../ifaces/bilanhb.php?date1=<?php echo date('d-m-Y'); ?>&date2=<?php echo date('d-m-Y'); ?>" role="button">Détails &raquo;</a></p>
             <?php
           }
         } else { ?>
@@ -137,11 +143,11 @@ if (is_valid_session()) {
         <?php } ?>
       </div>
       <div class="col-md-4">
-        <h3>Vendu aujourd'hui: <?= $quantite_vendu . ' Pcs.'; ?></h3>
+        <h3>Vendu aujourd'hui: <?php echo $quantite_vendu . ' Pcs.'; ?></h3>
         <?php if ($quantite_vendu > 0) { ?>
           <div id="graphm" style="height: 180px;"></div>
           <?php if ($validUser) { ?>
-            <p><a class="btn btn-default" href="../ifaces/bilanv.php?date1=<?= date('d-m-Y'); ?>&date2=<?= date('d-m-Y'); ?>" role="button">Détails &raquo;</a></p>
+            <p><a class="btn btn-default" href="../ifaces/bilanv.php?date1=<?php echo date('d-m-Y'); ?>&date2=<?php echo date('d-m-Y'); ?>" role="button">Détails &raquo;</a></p>
             <?php
           }
         } else { ?>
@@ -153,9 +159,9 @@ if (is_valid_session()) {
 
   <script type="text/javascript">
     'use strict';
-    const ventes = <?= (json_encode($ventes, JSON_NUMERIC_CHECK)); ?>;
-    const sorties = <?= (json_encode($sorties, JSON_NUMERIC_CHECK)); ?>;
-    const collectes = <?= (json_encode($collectes, JSON_NUMERIC_CHECK)); ?>;
+    const ventes = <?php echo (json_encode($ventes, JSON_NUMERIC_CHECK)); ?>;
+    const sorties = <?php echo (json_encode($sorties, JSON_NUMERIC_CHECK)); ?>;
+    const collectes = <?php echo (json_encode($collectes, JSON_NUMERIC_CHECK)); ?>;
 
     // FIXME: Recuperer les donnees en AJAX au lieu de recalculer toute la page a chaque fois.
     document.addEventListener('DOMContentLoaded', () => {
