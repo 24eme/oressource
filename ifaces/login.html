@@ -80,8 +80,8 @@
             body: JSON.stringify({ username, password })
           }).then(status)
                   .then((json) => {
-                    // redirection vers l'index en attendant de pouvoir faire mieux.
-                    window.location.href = '../ifaces/index.php';
+                    // redirection vers l'espace vente numero 1 (= premier point de vente).
+                    window.location.href = '../ifaces/ventes.php?numero=1';
                   }).catch((ex) => {
             div.setAttribute('style', 'width:80%; margin:auto; visibility: visible; display: block');
           });
