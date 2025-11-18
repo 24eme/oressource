@@ -51,7 +51,7 @@ $nav = filter_visibles(new_nav_sorties());
   </head>
 
   <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar container navbar-fixed-top" style="box-shadow: 0px 2px 10px -3px rgba(0,0,0,0.1); border: 1px solid #e2e2e2; border-radius: 8px; margin-top: 8px; background: #fafafa;" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
