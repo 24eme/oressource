@@ -100,17 +100,18 @@ if (is_valid_session() && is_allowed_config()) {
           <div class="row">
             <div class="col-md-1 col-md-offset-6">
               <br>
-              <button id="send" class="btn btn-warning ">Enregistrer</button>
+              <button id="send" class="btn btn-primary ">Enregistrer</button>
             </div>
             <div class="col-md-1 col-md-offset-1">
               <br>
-              <input type="button" onclick="location.href='exportbase.php';" value="Sauvegarder la base de données" class="btn btn-primary" />
+              <button class="btn btn-link" form="formExport">  <span class="glyphicon glyphicon-cloud-download"></span>&nbsp;Télécharger une copie de la base de données</button>
             </div>
           </div>
         </div>
       </div>
     </form>
   </div>
+  <form id="formExport" action="exportbase.php" method="POST"></form>
   <script type="text/javascript">
     'use strict';
     const structure = <?= json_encode($struct); ?>;
