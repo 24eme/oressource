@@ -61,7 +61,7 @@ if (is_valid_session() && is_allowed_vente_id($numero)) {
           -->
         </div>
 
-        <div class="panel-body" id="ticket">
+        <div class="panel-body" id="ticket" style="min-height: 386px;">
           <?php if (is_allowed_saisie_date() && is_allowed_edit_date()) { ?>
             <label for="date">Date de la vente:</label>
             <input type="date" id="date" name="antidate" value="<?= date('Y-m-d'); ?>">
@@ -100,6 +100,12 @@ if (is_valid_session() && is_allowed_vente_id($numero)) {
           </div>
         </div>
       </div>
+      <?php if ($_SESSION['viz_caisse']) { ?>
+      <div id="visualisation" class="pull-right" >
+        <a href="viz_caisse.php?numero=<?= $numero; ?>"
+           target="_blank">Visualiser les <?= $_SESSION['nb_viz_caisse']; ?> dernieres ventes</a>
+      </div>
+    <?php } ?>
     </div>
 
     <div class="col-md-3">
@@ -251,13 +257,6 @@ if (is_valid_session() && is_allowed_vente_id($numero)) {
         </div>
       </div>
     </div>
-
-    <?php if ($_SESSION['viz_caisse']) { ?>
-      <div id="visualisation" class="col-md-2 col-md-offset-2" style="width: 330px;">
-        <a href="viz_caisse.php?numero=<?= $numero; ?>"
-           target="_blank">Visualiser les <?= $_SESSION['nb_viz_caisse']; ?> dernieres ventes</a>
-      </div>
-    <?php } ?>
     </div>
   <script type="text/javascript">
     'use scrict';
