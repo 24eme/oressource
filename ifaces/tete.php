@@ -149,13 +149,13 @@ if (array_key_exists('QUERY_STRING', $_SERVER) && str_contains($_SERVER['QUERY_S
 
             <?php if (is_allowed_bilan()): ?>
               <li class="<?php if (in_array($activeTab , ['recapitulatif.php', 'bilanc.php', 'bilanhb.php', 'bilanv.php'])): ?>active<?php endif;?>">
-                <a href="../ifaces/recapitulatif.php"><span class="glyphicon glyphicon-stats"></span> Bilans</a>
+                <a href="../ifaces/recapitulatif.php"><span class="glyphicon glyphicon-stats"></span>&nbsp;Bilans</a>
               </li>
             <?php endif; ?>
 
             <?php if ($can_gestion || $can_verif || $can_users || $can_parners || $can_config): ?>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span><b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>&nbsp;<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <!-- Grille des prix et masse des bacs(gestion quotidienne) -->
                   <?php if ($can_gestion): ?>
@@ -250,15 +250,28 @@ if (array_key_exists('QUERY_STRING', $_SERVER) && str_contains($_SERVER['QUERY_S
             <?php endif; ?>
 
             <?php if (is_valid_session()): ?>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><b class="caret"></b></a>
+              <li class="dropdown<?php if($activeTab == 'edition_mdp_utilisateur.php'): ?> active<?php endif; ?>">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>&nbsp;<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li>
-                    <a href="../ifaces/edition_mdp_utilisateur.php">Mot de passe</a>
+                    <a class="<?php if($activeTab == 'edition_mdp_utilisateur.php'): ?>active<?php endif; ?>" href="../ifaces/edition_mdp_utilisateur.php">Mot de passe</a>
                   </li>
                   <li>
                     <a href="../moteur/destroy.php">Déconnexion</a>
                   </li>
+                </ul>
+              </li>
+            <?php endif; ?>
+
+            <?php if (isset($menu_extra)): ?>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">❤️&nbsp;<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <?php foreach ($menu_extra as $page => $lien): ?>
+                    <li>
+                      <a href="<?php echo $lien ?>"><?php echo $page; ?></a>
+                    </li>
+                  <?php endforeach; ?>
                 </ul>
               </li>
             <?php endif; ?>
