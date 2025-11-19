@@ -39,7 +39,6 @@ if (isset($_SESSION['id']) && $_SESSION['systeme'] === 'oressource' && is_allowe
   $req->execute();
   $point_vente = $req->fetch(PDO::FETCH_ASSOC);
   ?>
-  <div class="container">
     <h1>Gestion des points de vente</h1>
     <div class="panel-heading">Modifier les données concernant le point de vente n°<?= $id; ?>, <?= $point_vente['nom']; ?>. </div>
     <div class="panel-body">
@@ -75,7 +74,6 @@ if (isset($_SESSION['id']) && $_SESSION['systeme'] === 'oressource' && is_allowe
         </a>
       </div>
     </div>
-  </div> <!-- /.container -->
 
   <?php
   include_once('pied.php');

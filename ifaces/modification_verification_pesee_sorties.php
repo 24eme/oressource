@@ -61,7 +61,6 @@ if (is_valid_session() && is_allowed_verifications()) {
 
   require_once 'tete.php';
   ?>
-  <div class="container">
     <h1>Modifier la pesée n° <?= $id ?> appartenant à la sortie <?= $pesee['id_sortie'] ?> </h1>
     <div class="panel-body">
       <div class="row">
@@ -87,7 +86,6 @@ if (is_valid_session() && is_allowed_verifications()) {
         </form>
       </div>
     </div>
-  </div><!-- /.container -->
   <?php
   require_once 'pied.php';
 } else {

@@ -34,7 +34,6 @@ if (is_valid_session() && (strpos($_SESSION['niveau'], 'h') !== false)) {
   $pesee = pesees_collectes_id($bdd, $id);
   require_once 'tete.php';
   ?>
-  <div class="container">
     <h1>Modifier la pesée n°<?= $id ?> appartenant à la collecte <?= $pesee['id_collecte'] ?></h1>
     <div class="panel-body">
       <br>
@@ -56,8 +55,6 @@ if (is_valid_session() && (strpos($_SESSION['niveau'], 'h') !== false)) {
       </div>
 
     </div>
-
-  </div><!-- /.container -->
   <?php
   require_once 'pied.php';
 } else {

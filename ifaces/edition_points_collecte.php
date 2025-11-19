@@ -27,7 +27,6 @@ require_once '../core/session.php';
 if (is_valid_session() && is_allowed_config()) {
   require_once 'tete.php';
   ?>
-  <div class="container">
     <h1>Gestion des points de collecte</h1>
     <div class="panel-heading">Gérez ici les différents points de collecte.</div>
     <div class="panel-body">
@@ -74,7 +73,7 @@ if (is_valid_session() && is_allowed_config()) {
         <?php } ?>
       </tbody>
     </table>
-  </div><!-- /.container -->
+
   <?php
   require_once 'pied.php';
 } else {

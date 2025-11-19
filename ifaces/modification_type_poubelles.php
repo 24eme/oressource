@@ -27,7 +27,6 @@ if (isset($_SESSION['id']) && $_SESSION['systeme'] === 'oressource' && (strpos($
   $id = (int) $_POST['id'];
   $poubelle = types_poubelles_id($bdd, $id);
   ?>
-  <div class="container">
     <h1>Gestion des types et des masses des poubelles de la ville utilisées par la structure</h1>
     <div class="panel-heading">Modifier les données concernant le type de bac n° <?= $id ?>, <?= $poubelle['nom'] ?>. </div>
     <div class="panel-body">
@@ -49,7 +48,6 @@ if (isset($_SESSION['id']) && $_SESSION['systeme'] === 'oressource' && (strpos($
     </div>
   </div>
   </div>
-  </div><!-- /.container -->
   <?php
   require_once 'pied.php';
 } else {

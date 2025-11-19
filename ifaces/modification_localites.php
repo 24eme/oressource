@@ -27,7 +27,6 @@ if (isset($_SESSION['id']) && $_SESSION['systeme'] === 'oressource' && (strpos($
 
   $localite = localites_id($bdd, $id);
   ?>
-  <div class="container">
     <h1>Gestion des localités</h1>
     <div class="panel-heading">Modifier les données concernant la localité n° <?= $id ?>, <?= $localite['nom']; ?>. </div>
 
@@ -49,7 +48,6 @@ if (isset($_SESSION['id']) && $_SESSION['systeme'] === 'oressource' && (strpos($
     </div>
   </div>
   </div>
-  </div><!-- /.container -->
 
   <?php
   require_once 'pied.php';

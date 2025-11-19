@@ -50,7 +50,6 @@ if (is_valid_session() && is_allowed_vente() && $_SESSION['viz_caisse']) {
 
   require_once 'tete.php';
   ?>
-  <div class="container">
     <h1>Visualiser la vente n° <?= $_GET['nvente']; ?></h1>
     <p align="right">
       <input class="btn btn-default btn-lg" type='button'name='quitter' value='Quitter' OnClick="window.close();"/></p>
@@ -88,8 +87,6 @@ if (is_valid_session() && is_allowed_vente() && $_SESSION['viz_caisse']) {
         <?php } ?>
       </tbody>
     </table>
-  </div><!-- /.container -->
-
   <?php
   require_once 'pied.php';
 } else {

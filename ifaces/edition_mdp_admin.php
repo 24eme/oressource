@@ -30,7 +30,6 @@ if (is_valid_session() && is_allowed_users()) {
   $mail = filter_input(INPUT_GET, 'mail', FILTER_VALIDATE_EMAIL);
   ?>
 
-  <div class="container">
     <h1>Édition du mot de passe de l'utilisateur n°:<?= $id; ?>, <?= $mail; ?></h1>
     <p>L'identifiant de cet utilisateur est son adresse E-mail: <?= $mail; ?>, elle lui est demandée à chaque connexion à Oressource.</p>
     <br>
@@ -55,7 +54,6 @@ if (is_valid_session() && is_allowed_users()) {
           </div>
       </div>
     </div>
-  </div>
   <?php
   require_once 'pied.php';
 } else {

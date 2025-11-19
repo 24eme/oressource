@@ -36,7 +36,6 @@ if (is_valid_session() && is_allowed_gestion()) {
   ];
   require_once 'tete.php';
   ?>
-  <div class="container">
     <h1>Gestion de la typologie des bacs et des outils de manutention. </h1>
     <div class="panel-heading">Renseignez ici la masse de vos bacs et outils de manutention .</div>
     <p>Cet outil vous permet notamment d'indiquer le poids de vos bacs, chariots, diables, etc. de manière à pouvoir le soustraire automatiquement au moment de la pesée.</p>
@@ -79,8 +78,6 @@ if (is_valid_session() && is_allowed_gestion()) {
         <?php } ?>
       </tbody>
     </table>
-  </div><!-- /.container -->
-
   <?php
   require_once 'pied.php';
 } else {

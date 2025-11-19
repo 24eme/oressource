@@ -26,7 +26,6 @@ if (isset($_SESSION['id']) && $_SESSION['systeme'] === 'oressource' && (strpos($
   require_once 'tete.php';
   $types_poubelles = $bdd->query('SELECT * FROM types_poubelles');
   ?>
-  <div class="container">
     <h1>Gestion de la typologie et de la masse des différentes poubelles mises à disposition de la structure par la ville</h1>
     <div class="panel-heading">Gérez ici la liste de vos bacs à déchets.</div>
     <p>Cet outil vous permet notamment de discerner les bacs de matières recyclables de ceux dont le contenu est destiné à un enfouissement ou une incinération.</p>
@@ -79,8 +78,6 @@ if (isset($_SESSION['id']) && $_SESSION['systeme'] === 'oressource' && (strpos($
         <?php } ?>
       </tbody>
     </table>
-  </div><!-- /.container -->
-
   <?php
   $types_poubelles->closeCursor();
   require_once 'pied.php';

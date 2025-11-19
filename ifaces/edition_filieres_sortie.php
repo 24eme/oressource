@@ -31,7 +31,6 @@ if (is_valid_session() && is_allowed_partners()) {
   $types_dechets_evac = map_by(types_dechets_evac($bdd), 'id');
   require_once 'tete.php';
   ?>
-  <div class="container">
     <h1>Gestion des partenaires de recyclage</h1>
     <div class="panel-heading">Gérez ici la liste de ceux de vos partenaires qui traitent vos sorties destinées au recyclage.</div>
     <p>Permet notamment de différencier les "sorties recyclage" des "sorties ré-emploi" au moment de la mise en bilan.</p>
@@ -96,7 +95,6 @@ if (is_valid_session() && is_allowed_partners()) {
           <?php } ?>
       </tbody>
     </table>
-  </div><!-- /.container -->
 
   <?php
   require_once 'pied.php';

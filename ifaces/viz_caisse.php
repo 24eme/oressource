@@ -30,7 +30,6 @@ if (is_valid_session() && $_SESSION['viz_caisse'] && is_allowed_vente_id($numero
   $nb_viz_caisse = (int) ($_SESSION['nb_viz_caisse']);
   ?>
 
-  <div class="container">
     <h1>Visualisation des <?= $nb_viz_caisse; ?> derniere ventes</h1>
     <p align="right">
       <input class="btn btn-default btn-lg" type='button'name='quitter' value='Quitter' OnClick="window.close();"/></p>
@@ -84,7 +83,6 @@ if (is_valid_session() && $_SESSION['viz_caisse'] && is_allowed_vente_id($numero
         <?php } ?>
       </tbody>
     </table>
-  </div><!-- /.container -->
   <?php
   require_once 'pied.php';
 } else {

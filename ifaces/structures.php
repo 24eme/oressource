@@ -32,7 +32,6 @@ if (is_valid_session() && is_allowed_config()) {
   $struct = structure($bdd);
   ?>
 
-  <div class="container">
     <h1>Configuration de Oressource</h1>
     <div class="panel-heading">
       <h1 class="panel-title"><b>Déscription de la structure:<b></h1>
@@ -110,7 +109,6 @@ if (is_valid_session() && is_allowed_config()) {
         </div>
       </div>
     </form>
-  </div>
   <form id="formExport" action="exportbase.php" method="POST"></form>
   <script type="text/javascript">
     'use strict';

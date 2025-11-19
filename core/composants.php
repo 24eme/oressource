@@ -328,7 +328,6 @@ function config_types3_page_modif(array $props): string {
   global $_SERVER;
   ob_start();
   ?>
- <div class="container">
     <h1><?= $props['h1'] ?></h1>
     <div class="panel-heading">Modifier les données concernant le <?= $props['type'] ?> n°<?= $props['id'] ?>, <?= $props['nom'] ?>.</div>
     <div class="panel-body">
@@ -340,7 +339,6 @@ function config_types3_page_modif(array $props): string {
         </a>
       </div>
     </div>
-  </div><!-- /.container -->
   <?php
   return ob_get_clean();
 }
@@ -461,9 +459,7 @@ function page_config3(array $props, callable $droits) {
     require_once 'tete.php';
     $props['data'] = $props['functData']($bdd);
     ?>
-    <div class="container">
-      <?= config_types3($props) ?>
-    </div><!-- /.container -->
+    <?= config_types3($props) ?>
     <?php
     require_once 'pied.php';
     return ob_get_clean();

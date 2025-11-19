@@ -125,7 +125,6 @@ if (is_valid_session() && is_allowed_users()) {
     $info = array_merge($utilisateur, ['type' => 'edit']);
   }
   ?>
-  <div class="container">
     <?= configNav($nav); ?>
     <form action="<?= $urlPost ?>" method="post" autocomplete="off">
       <?php if (isset($_GET['id'])) { ?>
@@ -157,7 +156,6 @@ if (is_valid_session() && is_allowed_users()) {
         </div>
       </div>
     </form>
-  </div>
   </div>
   <?php
   require_once 'pied.php';

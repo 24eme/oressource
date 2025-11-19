@@ -37,7 +37,6 @@ if (is_valid_session() && is_allowed_gestion()) {
   ];
   require_once 'tete.php';
   ?>
-  <div class="container">
     <h1>Gestion des types de bacs et de moyens de manutention.</h1>
     <div class="panel-heading">Modifier les données concernant le moyen de manutention n° <?= $_POST['id'] ?>, <?= $contenants['nom'] ?>.</div>
     <div class="panel-body">
@@ -49,7 +48,6 @@ if (is_valid_session() && is_allowed_gestion()) {
         </a>
       </div>
     </div>
-  </div><!-- /.container -->
   <?php
   require_once 'pied.php';
 } else {
