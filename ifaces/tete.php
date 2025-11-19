@@ -138,7 +138,7 @@ if ($_SERVER['QUERY_STRING'] && str_contains($_SERVER['QUERY_STRING'], 'numero='
 
             <?php if (is_allowed_bilan()): ?>
               <li class="<?php if ($activeTab == 'bilanc.php'): ?>active<?php endif;?>">
-                <a href="../ifaces/bilanc.php?date1=<?= $now_date; ?>&date2=<?= $now_date; ?>&numero=0"><span class="glyphicon glyphicon-stats"></span> Bilans</a>
+                <a href="../ifaces/recapitulatif.php"><span class="glyphicon glyphicon-stats"></span> Bilans</a>
               </li>
             <?php endif; ?>
 

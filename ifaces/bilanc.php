@@ -176,7 +176,7 @@ if (is_valid_session() && is_allowed_bilan()) {
         </div>
 
         <ul class="nav nav-tabs">
-          <li><a href="index.php">Récapitulatif</a></li>
+          <li><a href="recapitulatif.php">Récapitulatif</a></li>
           <li class="active"><a>Collectes</a></li>
           <li><a href="bilanhb.php?numero=0&date1=<?php echo $date1 ?>&date2=<?php echo $date2 ?>">Sorties hors-boutique</a></li>
           <li><a href="bilanv.php?numero=0&date1=<?php echo $date1 ?>&date2=<?php echo $date2 ?>">Ventes</a></li>

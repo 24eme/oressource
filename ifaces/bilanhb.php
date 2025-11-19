@@ -233,7 +233,7 @@ if (is_valid_session() && is_allowed_bilan()) {
           <?php echo datePicker() ?>
         </div>
         <ul class="nav nav-tabs">
-          <li><a href="index.php">Récapitulatif</a></li>
+          <li><a href="recapitulatif.php">Récapitulatif</a></li>
           <li><a href="bilanc.php?numero=0&date1=<?php echo $date1 ?>&date2=<?php echo $date2 ?>">Collectes</a></li>
           <li class="active"><a>Sorties hors-boutique</a></li>
           <li><a href="bilanv.php?numero=0&date1=<?php echo $date1 ?>&date2=<?php echo $date2 ?>">Ventes</a></li>
