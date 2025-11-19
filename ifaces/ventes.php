@@ -103,7 +103,7 @@ if (is_valid_session() && is_allowed_vente_id($numero)) {
       </div>
     </div>
 
-    <div class="col-md-4" style="width: 220px;">
+    <div class="col-md-3">
       <div class="panel panel-info">
         <div class="panel-heading">
           <h3 class="panel-title">
@@ -167,7 +167,7 @@ if (is_valid_session() && is_allowed_vente_id($numero)) {
       </div>
     </div>
 
-    <div class="col-md-4" >
+    <div class="col-md-5" >
       <div class="panel panel-info">
         <div class="panel-heading">
           <h3 class="panel-title">Type d'objet:</h3>
