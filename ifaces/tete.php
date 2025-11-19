@@ -263,21 +263,18 @@ if (array_key_exists('QUERY_STRING', $_SERVER) && str_contains($_SERVER['QUERY_S
               </li>
             <?php endif; ?>
 
-
-            <li class="dropdown<?php if($activeTab == '.php'): ?> active<?php endif; ?>">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">❤️&nbsp;<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="<?php if($activeTab == '.php'): ?>active<?php endif; ?>" href="../ifaces/edition_mdp_utilisateur.php">Assistance</a>
-                </li>
-                <li>
-                  <a class="<?php if($activeTab == '.php'): ?>active<?php endif; ?>" href="../ifaces/edition_mdp_utilisateur.php">Contact</a>
-                </li>
-                <li>
-                  <a class="<?php if($activeTab == '.php'): ?>active<?php endif; ?>" href="../ifaces/edition_mdp_utilisateur.php">À propos</a>
-                </li>
-              </ul>
-            </li>
+            <?php if (isset($menu_extra)): ?>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">❤️&nbsp;<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <?php foreach ($menu_extra as $page => $lien): ?>
+                    <li>
+                      <a href="<?php echo $lien ?>"><?php echo $page; ?></a>
+                    </li>
+                  <?php endforeach; ?>
+                </ul>
+              </li>
+            <?php endif; ?>
           </ul>
         </div><!--/.navbar-collapse -->
       </div>
