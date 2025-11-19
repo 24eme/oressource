@@ -1,3 +1,4 @@
+</div>
 <div class="container">
   <footer>
     <p class="text-left">Oressource 2014-2019</p>

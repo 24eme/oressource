@@ -110,10 +110,13 @@ function linkNav(array $props) {
 function configNav(array $props) {
   ob_start();
   ?>
+  <ol class="breadcrumb">
+    <li><a href="">Sortie hors-boutique</a></li>
+    <li><a href=""><?php foreach ($props['links'] as $link): if($link['state']): ?><?php echo $link['text']; ?><?php endif; ?><?php endforeach; ?></a></li>
+    <li class="active"><a href=""><?= $props['text'] ?></a></li>
+  </ol>
+
   <nav class="navbar">
-    <div class="header-header">
-      <h1><?= $props['text'] ?></h1>
-    </div>
     <ul class="nav nav-tabs">
       <?php foreach ($props['links'] as $link) { ?>
         <?= linkNav($link) ?>

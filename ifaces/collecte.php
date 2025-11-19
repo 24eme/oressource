@@ -40,10 +40,11 @@ if (is_valid_session() && is_allowed_collecte_id($numero)) {
   $date = new Datetime('now');
   ?>
 
-  <div class="container">
-    <div class="header-header">
-      <h1><?= $point_collecte['nom']; ?></h1>
-    </div>
+  <ol class="breadcrumb">
+    <li><a href="">Point de collecte</a></li>
+    <li class="active"><a href=""><?= $point_collecte['nom']; ?></a></li>
+  </ol>
+
     <div class="row">
       <?= cartList(['text' => "Bon d'apport: 0 Kg.", 'date' => $date->format('Y-m-d')]) ?>
 
@@ -77,7 +78,6 @@ if (is_valid_session() && is_allowed_collecte_id($numero)) {
         <?= buttonCollectesSorties() ?>
       </div>
     </div> <!-- row -->
-  </div> <!--container-->
 
   <script type="text/javascript">
     // Variables d'environnement de Oressource.

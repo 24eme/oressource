@@ -39,13 +39,12 @@ if (is_valid_session() && is_allowed_vente_id($numero)) {
   $moyens_paiement = filter_visibles(moyens_paiements($bdd));
   ?>
 
-  <div class="container">
-    <nav class="navbar">
-      <div class="header-header">
-        <h1><?= $point_vente['nom']; ?></h1>
-      </div>
-    </nav>
+    <ol class="breadcrumb">
+      <li><a href="">Point de vente</a></li>
+      <li class="active"><a href=""><?= $point_vente['nom']; ?></a></li>
+    </ol>
 
+    <div class="row">
     <div class="col-md-4">
       <div id="ticket" class="panel panel-info" >
         <div class="panel-heading">
@@ -259,7 +258,7 @@ if (is_valid_session() && is_allowed_vente_id($numero)) {
            target="_blank">Visualiser les <?= $_SESSION['nb_viz_caisse']; ?> dernieres ventes</a>
       </div>
     <?php } ?>
-  </div>
+    </div>
   <script type="text/javascript">
     'use scrict';
     // Variables d'environnement de Oressource.

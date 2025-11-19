@@ -167,22 +167,27 @@ if (is_valid_session() && is_allowed_bilan()) {
   ];
   ?>
 
-  <div class="container">
+
     <div class="row">
-      <div class="col-md-11">
-        <h1>Bilan global</h1>
-        <div class="col-md-4 col-md-offset-8" >
+      <div class="col-md-8">
+       <ol class="breadcrumb">
+          <li><a href="">Bilan global</a></li>
+          <li class="active"><a href="">Collectes</a></li>
+       </ol>
+      </div>
+      <div class="col-md-4">
+        <div class="col-md-12" >
           <?php echo datePicker() ?>
         </div>
+      </div>
+    </div>
 
-        <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs">
           <li><a href="recapitulatif.php">Récapitulatif</a></li>
           <li class="active"><a>Collectes</a></li>
           <li><a href="bilanhb.php?numero=0&date1=<?php echo $date1 ?>&date2=<?php echo $date2 ?>">Sorties hors-boutique</a></li>
           <li><a href="bilanv.php?numero=0&date1=<?php echo $date1 ?>&date2=<?php echo $date2 ?>">Ventes</a></li>
         </ul>
-      </div>
-    </div>
 
   <div class="row">
     <div class="col-md-8 col-md-offset-1" >
@@ -346,7 +351,6 @@ if (is_valid_session() && is_allowed_bilan()) {
   </div>
 </div>
 </div>
-
   <script type="text/javascript">
     'use strict';
 

@@ -53,10 +53,21 @@ if (array_key_exists('QUERY_STRING', $_SERVER) && str_contains($_SERVER['QUERY_S
     <link href="../css/oressource.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../js/morris/morris.css">
     <link rel="stylesheet" type="text/css" media="all" href="../css/daterangepicker-bs3.css">
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap-switch.js"></script>
+    <script src="../js/raphael.js"></script>
+    <script src="../js/morris/morris.min.js"></script>
+    <script src="../js/moment.js"></script>
+    <script src="../js/fr.js"></script>
+    <script src="../js/daterangepicker.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/ticket.js"></script>
+    <script src="../js/numpad.js"></script>
   </head>
 
   <body>
-    <nav class="navbar container navbar-fixed-top" style="box-shadow: 0px 2px 10px -3px rgba(0,0,0,0.1); border: 1px solid #e2e2e2; border-radius: 8px; margin-top: 8px; background: #fafafa;" role="navigation">
+    <nav id="nav_main" class="navbar container" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -65,7 +76,7 @@ if (array_key_exists('QUERY_STRING', $_SERVER) && str_contains($_SERVER['QUERY_S
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../ifaces/index.php">Oressource</a>
+          <a class="navbar-brand" href="../ifaces/index.php"><img src="/images/logo_oressource.svg"></a>
         </div>
 
         <div class="navbar-collapse collapse navbar-right">
@@ -117,7 +128,7 @@ if (array_key_exists('QUERY_STRING', $_SERVER) && str_contains($_SERVER['QUERY_S
 
             <?php if (is_allowed_sortie() && count($nav)): ?>
               <?php if (count(filter_visibles(points_sorties($bdd))) < 2): ?>
-                <li class="<?php if ($activeTab == 'sorties.php' || $activeTab == 'sortiesr.php' || $activeTab == 'sortiesd.php' || $activeTab == 'sortiesp.php'): ?>active<?php endif; ?>">
+                <li class="<?php if (preg_match('/sorties[pcrd]?\.php/', $activeTab)): ?>active<?php endif; ?>">
                   <a href="<?php echo $nav[0]['href'] ?>?numero=<?php echo filter_visibles(points_sorties($bdd))[0]['id'] ?>">Sortie hors-boutique</a>
                 </li>
               <?php else: ?>
@@ -137,7 +148,7 @@ if (array_key_exists('QUERY_STRING', $_SERVER) && str_contains($_SERVER['QUERY_S
             <?php endif; ?>
 
             <?php if (is_allowed_bilan()): ?>
-              <li class="<?php if ($activeTab == 'bilanc.php'): ?>active<?php endif;?>">
+              <li class="<?php if (in_array($activeTab , ['recapitulatif.php', 'bilanc.php', 'bilanhb.php', 'bilanv.php'])): ?>active<?php endif;?>">
                 <a href="../ifaces/recapitulatif.php"><span class="glyphicon glyphicon-stats"></span> Bilans</a>
               </li>
             <?php endif; ?>
@@ -269,14 +280,4 @@ if (array_key_exists('QUERY_STRING', $_SERVER) && str_contains($_SERVER['QUERY_S
       </div>
     <?php endif;?>
 
-    <script src="../js/jquery-2.1.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/bootstrap-switch.js"></script>
-    <script src="../js/raphael.js"></script>
-    <script src="../js/morris/morris.min.js"></script>
-    <script src="../js/moment.js"></script>
-    <script src="../js/fr.js"></script>
-    <script src="../js/daterangepicker.js"></script>
-    <script src="../js/utils.js"></script>
-    <script src="../js/ticket.js"></script>
-    <script src="../js/numpad.js"></script>
+    <div id="main" class="container">

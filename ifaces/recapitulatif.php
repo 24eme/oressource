@@ -103,14 +103,14 @@ if (is_valid_session()) {
     });
     </script>
 
+    <ol class="breadcrumb">
+      <li><a href="">Bilan global</a></li>
+      <li class="active"><a href="">Récapitulatif</a></li>
+    </ol>
 
-  <div class="container" id="actualise">
     <div class="row">
       <div class="col-md-11">
-        <h1>Bilan global</h1>
-
-
-        <ul class="nav nav-tabs" style="margin-top: 67px;">
+        <ul class="nav nav-tabs">
           <li class="active"><a>Récapitulatif</a></li>
           <li><a href="bilanc.php?date1=<?php echo (new DateTime())->format('d-m-Y'); ?>&date2=<?php echo (new DateTime())->format('d-m-Y'); ?>&numero=0">Collectes</a></li>
           <li><a href="bilanhb.php?numero=0&date1=<?php echo (new DateTime())->format('d-m-Y'); ?>&date2=<?php echo (new DateTime())->format('d-m-Y'); ?>">Sorties hors-boutique</a></li>
@@ -155,7 +155,6 @@ if (is_valid_session()) {
         <?php } ?>
       </div>
     </div> <!-- /row -->
-  </div> <!-- /container -->
 
   <script type="text/javascript">
     'use strict';

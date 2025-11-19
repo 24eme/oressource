@@ -46,7 +46,6 @@ if (is_valid_session() && is_allowed_sortie_id($numero)) {
   $nav = new_nav($point_sortie['nom'], $numero, 3);
   ?>
 
-  <div class="container">
     <?= configNav($nav) ?>
     <?= cartList(['text' => "Masse totale: 0 Kg.", 'date' => $date->format('Y-m-d')]) ?>
 
@@ -75,7 +74,6 @@ if (is_valid_session() && is_allowed_sortie_id($numero)) {
       <?= listSaisie(['text' => 'Materiaux et déchets:', 'key' => 'list_evac']) ?>
       <?= buttonCollectesSorties() ?>
     </div> <!-- .col-md-4 -->
-  </div> <!-- container -->
 
   <script type="text/javascript">
     // Variables d'environnement de Oressource.

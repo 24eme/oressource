@@ -62,24 +62,28 @@ if (is_valid_session() && is_allowed_bilan()) {
   $graphPv = data_graphs_from_bilan($bilans_types, 'chiffre_degage');
   ?>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-11" >
-        <h1>Bilan global</h1>
-        <div class="col-md-4 col-md-offset-8" >
-          <?php echo datePicker() ?>
-        </div>
 
-        <ul class="nav nav-tabs">
-          <li><a href="recapitulatif.php">Récapitulatif</a></li>
-          <li><a href="bilanc.php?<?php echo $date_query; ?>&numero=0">Collectes</a></li>
-          <li><a href="bilanhb.php?<?php echo $date_query; ?>&numero=0">Sorties hors-boutique</a></li>
-          <li class="active"><a href="#">Ventes</a></li>
-        </ul>
+  <div class="row">
+    <div class="col-md-8">
+     <ol class="breadcrumb">
+        <li><a href="">Bilan global</a></li>
+        <li class="active"><a href="">Ventes</a></li>
+     </ol>
+    </div>
+    <div class="col-md-4">
+      <div class="col-md-12" >
+        <?php echo datePicker() ?>
       </div>
     </div>
+  </div>
 
-  <hr/>
+  <ul class="nav nav-tabs">
+    <li><a href="recapitulatif.php">Récapitulatif</a></li>
+    <li><a href="bilanc.php?<?php echo $date_query; ?>&numero=0">Collectes</a></li>
+    <li><a href="bilanhb.php?<?php echo $date_query; ?>&numero=0">Sorties hors-boutique</a></li>
+    <li class="active"><a href="#">Ventes</a></li>
+  </ul>
+
   <div class="row">
     <div class="col-md-8 col-md-offset-1" >
       <h2>Bilan des ventes de la structure</h2>
@@ -292,7 +296,6 @@ if (is_valid_session() && is_allowed_bilan()) {
         <?php } ?>
       </div>
     </div>
-  </div>
   </div>
 
   <script type="text/javascript">

@@ -225,21 +225,26 @@ if (is_valid_session() && is_allowed_bilan()) {
   $data = strategie($bdd, $numero, $time_debut, $time_fin);
   ?>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-11 " >
-        <h1>Bilan global</h1>
-        <div class="col-md-4 col-md-offset-8" >
-          <?php echo datePicker() ?>
-        </div>
-        <ul class="nav nav-tabs">
-          <li><a href="recapitulatif.php">Récapitulatif</a></li>
-          <li><a href="bilanc.php?numero=0&date1=<?php echo $date1 ?>&date2=<?php echo $date2 ?>">Collectes</a></li>
-          <li class="active"><a>Sorties hors-boutique</a></li>
-          <li><a href="bilanv.php?numero=0&date1=<?php echo $date1 ?>&date2=<?php echo $date2 ?>">Ventes</a></li>
-        </ul>
+  <div class="row">
+    <div class="col-md-8">
+     <ol class="breadcrumb">
+        <li><a href="">Bilan global</a></li>
+        <li class="active"><a href="">Sorties hors-boutique</a></li>
+     </ol>
+    </div>
+    <div class="col-md-4">
+      <div class="col-md-12" >
+        <?php echo datePicker() ?>
       </div>
     </div>
+  </div>
+
+  <ul class="nav nav-tabs">
+    <li><a href="recapitulatif.php">Récapitulatif</a></li>
+    <li><a href="bilanc.php?numero=0&date1=<?php echo $date1 ?>&date2=<?php echo $date2 ?>">Collectes</a></li>
+    <li class="active"><a>Sorties hors-boutique</a></li>
+    <li><a href="bilanv.php?numero=0&date1=<?php echo $date1 ?>&date2=<?php echo $date2 ?>">Ventes</a></li>
+  </ul>
 
   <div class="row">
     <div class="col-md-8 col-md-offset-1">
