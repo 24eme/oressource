@@ -149,7 +149,7 @@ if (array_key_exists('QUERY_STRING', $_SERVER) && str_contains($_SERVER['QUERY_S
 
             <?php if (is_allowed_bilan()): ?>
               <li class="<?php if (in_array($activeTab , ['recapitulatif.php', 'bilanc.php', 'bilanhb.php', 'bilanv.php'])): ?>active<?php endif;?>">
-                <a href="../ifaces/recapitulatif.php"><span class="glyphicon glyphicon-stats"></span> Bilans</a>
+                <a href="../ifaces/recapitulatif.php"><span class="glyphicon glyphicon-stats"></span>&nbsp;Bilans</a>
               </li>
             <?php endif; ?>
 
