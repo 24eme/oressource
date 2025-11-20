@@ -44,11 +44,9 @@ if (is_valid_session() && is_allowed_vente_id($numero)) {
       <li class="active"><a href=""><?= $point_vente['nom']; ?></a></li>
     </ol>
 
+    <div id="message" ></div>
+
     <div class="row">
-
-    <div class="col-md-4"></div>
-    <div id="message" class="col-md-8">&nbsp;</div>
-
     <div class="col-md-4">
       <div id="ticket" class="panel panel-info" >
         <div class="panel-heading">
