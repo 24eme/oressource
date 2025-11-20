@@ -102,6 +102,7 @@ function generic_ctor_post(): array {
   ];
 }
 
+
 function conventions_sortiePost(PDO $bdd) {
   if (is_allowed_partners()) {
     generic_insert_config($bdd, 'conventions_sorties', generic_ctor_post());

@@ -27,11 +27,11 @@ require_once '../core/composants.php';
 function sortie_type(string $type): string {
   switch ($type) {
     case 'sortiesc';
-      return 'don aux partenaires';
+      return 'Sorties partenaires';
     case 'sorties';
-      return 'don';
+      return 'Don';
     case 'sortiesd';
-      return 'dechetterie';
+      return 'Dechetterie';
     case 'sortiesp';
       return 'poubelles';
     case 'sortiesr';
@@ -313,11 +313,11 @@ if (is_valid_session() && is_allowed_bilan()) {
           <h3 class="panel-title">Détail par type d'objets</h3>
         </div>
         <div class="panel-body">
-          <?php echo count($data['donsSimples']) ? bilanTable3(['id' => 0, 'text' => 'Dons simples', 'td0' => 'type objet', 'td1' => 'somme', 'td2' => '%', 'masse' => $data['masse'], 'data' => $data['donsSimples']]) : '' ?>
-          <?php echo count($data['partenaires']) ? bilanTable3(['id' => 1, 'text' => 'Dons aux partenaires', 'td0' => 'type objet', 'td1' => 'somme', 'td2' => '%', 'masse' => $data['masse'], 'data' => $data['partenaires']]) : '' ?>
-          <?php echo count($data['dechetteries']) ? bilanTable3(['id' => 2, 'text' => 'Dechetterie', 'td0' => 'type objet', 'td1' => 'somme', 'td2' => '%', 'masse' => $data['masse'], 'data' => $data['dechetteries']]) : '' ?>
-          <?php echo count($data['poubelles']) ? bilanTable3(['id' => 3, 'text' => 'Poubelles', 'td0' => 'type objet', 'td1' => 'somme', 'td2' => '%', 'masse' => $data['masse'], 'data' => $data['poubelles']]) : '' ?>
-          <?php echo count($data['recycleurs']) ? bilanTable3(['id' => 4, 'text' => 'Recycleurs', 'td0' => 'type objet', 'td1' => 'somme', 'td2' => '%', 'masse' => $data['masse'], 'data' => $data['recycleurs']]) : '' ?>
+          <?php count($data['donsSimples']) ? bilanTable3(['id' => 0, 'text' => 'Dons simples', 'td0' => 'type objet', 'td1' => 'somme', 'td2' => '%', 'masse' => $data['masse'], 'data' => $data['donsSimples']]) : '' ?>
+          <?php count($data['partenaires']) ? bilanTable3(['id' => 1, 'text' => 'Sorties partenaires', 'td0' => 'type objet', 'td1' => 'somme', 'td2' => '%', 'masse' => $data['masse'], 'data' => $data['partenaires']]) : '' ?>
+          <?php count($data['dechetteries']) ? bilanTable3(['id' => 2, 'text' => 'Dechetterie', 'td0' => 'type objet', 'td1' => 'somme', 'td2' => '%', 'masse' => $data['masse'], 'data' => $data['dechetteries']]) : '' ?>
+          <?php count($data['poubelles']) ? bilanTable3(['id' => 3, 'text' => 'Poubelles', 'td0' => 'type objet', 'td1' => 'somme', 'td2' => '%', 'masse' => $data['masse'], 'data' => $data['poubelles']]) : '' ?>
+          <?php count($data['recycleurs']) ? bilanTable3(['id' => 4, 'text' => 'Recycleurs', 'td0' => 'type objet', 'td1' => 'somme', 'td2' => '%', 'masse' => $data['masse'], 'data' => $data['recycleurs']]) : '' ?>
           <!--
           <a href="../moteur/export_bilanc_parloca.php?numero=<?php echo $numero ?>&date1=<?php echo $date1 ?>&date2=<?php echo $date2 ?>">
             <button type="button" class="btn btn-default btn-xs" disabled>exporter ces données (.csv)</button>
@@ -339,7 +339,7 @@ if (is_valid_session() && is_allowed_bilan()) {
 
           <table class="table table-condensed table-striped table table-bordered table-hover" style="border-collapse:collapse;">
             <thead>
-            <th style="width:300px">Dons aux partenaires</th>
+            <th style="width:300px">Sorties partenaires</th>
             <tr>
               <th style="width:300px">Nom du partenaire</th>
               <th>Nbr. de sorties</th>

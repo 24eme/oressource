@@ -31,19 +31,25 @@ if (is_valid_session() && is_allowed_vente() && $_SESSION['viz_caisse']) {
   vendus.timestamp,
   vendus.lot,
   type_dechets.nom type,
-  IF(vendus.id_objet > 0, grille_objets.nom, "autre") objet,
+  IF(vendus.id_objet is not NULL, grille_objets.nom, "autre") AS objet,
   vendus.quantite,
   vendus.prix,
   vendus.id_createur,
   vendus.timestamp,
-  utilisateurs.mail
-  FROM
-  vendus, type_dechets, grille_objets, utilisateurs
-  WHERE
+  utilisateurs.mail,
+  pesees_vendus.masse
+  FROM 
+  vendus
+  JOIN type_dechets ON type_dechets.id = vendus.id_type_dechet
+  LEFT JOIN grille_objets ON grille_objets.id = vendus.id_objet
+  JOIN utilisateurs ON utilisateurs.id = vendus.id_createur
+  LEFT JOIN pesees_vendus
+  ON pesees_vendus.id = vendus.id
+WHERE 
   vendus.id_vente = :id_vente
-  AND type_dechets.id = vendus.id_type_dechet
-  AND (grille_objets.id = vendus.id_objet OR vendus.id_objet = 0)
-  GROUP BY vendus.id ');
+ORDER BY 
+  vendus.id');
+
   $req->execute(['id_vente' => $_GET['nvente']]);
   $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
   $req->closeCursor();
@@ -67,6 +73,7 @@ if (is_valid_session() && is_allowed_vente() && $_SESSION['viz_caisse']) {
           <th>Type d'objet:</th>
           <th>Objet:</th>
           <th>Quantité</th>
+          <th>Masse</th>
           <th>Prix</th>
           <th>Lot</th>
           <th>Auteur de la ligne</th>
@@ -80,6 +87,7 @@ if (is_valid_session() && is_allowed_vente() && $_SESSION['viz_caisse']) {
             <td><?= $d['type']; ?></td>
             <td><?= $d['objet']; ?></td>
             <td><?= $d['quantite']; ?></td>
+            <td><?= $d['masse']; ?></td>
             <td><?= $d['prix']; ?></td>
             <td><?= $d['lot'] === 0 ? 'unité' : 'lot' ?></td>
             <td><?= $users[$d['id_createur']]['mail'] ?></td>

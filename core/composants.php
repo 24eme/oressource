@@ -17,7 +17,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once '../core/validation.php';
+require_once __DIR__ . '/validation.php';
 
 /* Fonction utile pour la nav des sorties. */
 
