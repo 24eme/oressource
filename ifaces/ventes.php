@@ -249,8 +249,8 @@ if (is_valid_session() && is_allowed_vente_id($numero)) {
                 data-target="#collapserembou" aria-expanded="false"
                 aria-controls="collapseExample">Remboursement</button>
         </div>
-        <div class="collapse" id="collapserembou">
-          <div class="well">
+        <div class="collapse col-md-12" id="collapserembou" style="margin-top: 15px;">
+          <div class="well" style="margin-bottom: 0;">
             <form action="../ifaces/remboursement.php?numero=<?= $numero ?>" method="post">
               <div class="input-group">
                 <input name="passrmb" id="passrmb" type="password" class="form-control" placeholder="Code remboursement caisse">
