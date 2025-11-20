@@ -213,39 +213,43 @@ pre {
 }
 
 #nav_main.navbar {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding: 8px;
+  margin-bottom: 12px;
+  padding: 12px;
 }
 
 #nav_main.navbar .navbar-brand {
-  height: 40px;
-  line-height: 34px;
+  height: 44px;
+  line-height: 38px;
   padding-top: 0;
   padding-bottom: 0;
   padding-left: 5px;
 }
 
 #nav_main.navbar .navbar-brand img {
-  height: 36px;
+  height: 40px;
 }
 
 #nav_main.navbar .navbar-nav > li > a {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 #main, #nav_main.navbar {
   box-shadow: 0px 2px 10px -3px rgba(0,0,0,0.1);
   border: 1px solid #ececec;
   border-radius: 6px;
-  margin-top: 10px;
+  margin-top: 12px;
   background: #fff;
 }
 
 #main {
   padding-top: 15px;
   padding-bottom: 15px;
+  position: relative;
+}
+
+#label_point_vente_nom {
+  position: absolute; top: -9px; left: 15px; background: #fafafa; color: #555; border: 1px solid #ececec;
 }
 
 .breadcrumb .active {

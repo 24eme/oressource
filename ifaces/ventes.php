@@ -38,11 +38,9 @@ if (is_valid_session() && is_allowed_vente_id($numero)) {
   $objets = filter_visibles(objets($bdd));
   $moyens_paiement = filter_visibles(moyens_paiements($bdd));
   ?>
-
-    <ol class="breadcrumb">
-      <li><a href="">Point de vente</a></li>
-      <li class="active"><a href=""><?= $point_vente['nom']; ?></a></li>
-    </ol>
+    <?php if (count(filter_visibles(points_ventes($bdd))) > 1):?>
+    <span id="label_point_vente_nom" class="label label-primary"><?= $point_vente['nom']; ?></span>
+    <?php endif; ?>
 
     <div id="message" ></div>
 
@@ -239,12 +237,18 @@ if (is_valid_session() && is_allowed_vente_id($numero)) {
         </div>
       </div>
 
-      <div id="boutons" class="list-group">
-        <button id="encaissement" class="btn btn-success btn-lg" style="height:60px">Encaisser</button>
-        <button id="impression" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-print"></span></button>
-        <button id="remboursement" class="btn btn-danger btn-lg" data-toggle="collapse"
+      <div id="boutons" class="list-group row">
+        <div class="col-md-6 text-left">
+        <button id="encaissement" class="btn btn-success btn-lg btn-block" style="height: 60px;">Encaisser</button>
+        </div>
+        <div class="col-md-2 text-center">
+        <button id="impression" class="btn btn-primary btn-lg btn-block" style="height: 60px;"><span class="glyphicon glyphicon-print"></span></button>
+        </div>
+        <div class="col-md-4 text-right">
+        <button id="remboursement" class="btn btn-danger btn btn-block" style="margin-top: 25px;" data-toggle="collapse"
                 data-target="#collapserembou" aria-expanded="false"
                 aria-controls="collapseExample">Remboursement</button>
+        </div>
         <div class="collapse" id="collapserembou">
           <div class="well">
             <form action="../ifaces/remboursement.php?numero=<?= $numero ?>" method="post">

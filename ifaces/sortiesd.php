@@ -39,6 +39,10 @@ if (is_valid_session() && is_allowed_sortie_id($numero)) {
   $nav = new_nav($point_sortie['nom'], $numero, 4);
   ?>
 
+  <?php if (count(filter_visibles(points_sorties($bdd))) > 1): ?>
+  <span id="label_point_vente_nom" class="label label-primary"><?= $point_sortie['nom']; ?></span>
+  <?php endif; ?>
+
     <?= configNav($nav) ?>
     <?= cartList(['text' => "Masse totale: 0 Kg.", 'date' => $date->format('Y-m-d')]) ?>
 

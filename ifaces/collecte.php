@@ -39,11 +39,9 @@ if (is_valid_session() && is_allowed_collecte_id($numero)) {
   $types_action = filter_visibles(types_collectes($bdd));
   $date = new Datetime('now');
   ?>
-
-  <ol class="breadcrumb">
-    <li><a href="">Point de collecte</a></li>
-    <li class="active"><a href=""><?= $point_collecte['nom']; ?></a></li>
-  </ol>
+  <?php if (count(filter_visibles(points_collectes($bdd))) > 1): ?>
+  <span id="label_point_vente_nom" class="label label-primary"><?= $point_collecte['nom']; ?></span>
+  <?php endif; ?>
 
     <div class="row">
       <?= cartList(['text' => "Bon d'apport: 0 Kg.", 'date' => $date->format('Y-m-d')]) ?>

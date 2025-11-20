@@ -103,10 +103,7 @@ if (is_valid_session()) {
     });
     </script>
 
-    <ol class="breadcrumb">
-      <li><a href="">Bilan global</a></li>
-      <li class="active"><a href="">Récapitulatif</a></li>
-    </ol>
+
 
     <div class="row">
       <div class="col-md-11">
