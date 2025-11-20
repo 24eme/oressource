@@ -269,7 +269,7 @@ if (array_key_exists('QUERY_STRING', $_SERVER) && str_contains($_SERVER['QUERY_S
                 <ul class="dropdown-menu">
                   <?php foreach ($menu_extra as $page => $lien): ?>
                     <li>
-                      <a href="<?php echo $lien ?>"><?php echo $page; ?></a>
+                      <a href="<?php echo $lien ?>" target="_blank"><?php echo $page; ?></a>
                     </li>
                   <?php endforeach; ?>
                 </ul>
