@@ -17,7 +17,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once '../core/validation.php';
+require_once __DIR__ . '/validation.php';
 
 /* Fonction utile pour la nav des sorties. */
 
@@ -110,12 +110,6 @@ function linkNav(array $props) {
 function configNav(array $props) {
   ob_start();
   ?>
-  <ol class="breadcrumb">
-    <li><a href="">Sortie hors-boutique</a></li>
-    <li><a href=""><?php foreach ($props['links'] as $link): if($link['state']): ?><?php echo $link['text']; ?><?php endif; ?><?php endforeach; ?></a></li>
-    <li class="active"><a href=""><?= $props['text'] ?></a></li>
-  </ol>
-
   <nav class="navbar">
     <ul class="nav nav-tabs">
       <?php foreach ($props['links'] as $link) { ?>
@@ -181,7 +175,7 @@ function cartList(array $props) {
           <label id="massetot"><?= $props['text'] ?></label>
         </h3>
       </div>
-      <div class="panel-body">
+      <div class="panel-body" style="min-height: 386px;">
         <form id="formulaire" method="POST">
           <?php if (is_allowed_saisie_date() && is_allowed_edit_date()) { ?>
             <div>

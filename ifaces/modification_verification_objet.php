@@ -43,7 +43,7 @@ if (isset($_SESSION['id']) && $_SESSION['systeme'] === 'oressource' && (strpos($
 
           <div class="col-md-2">
             <label for="prix">Masse:</label>
-            <br><input <?= $_POST['masse'] == 0 ? 'disabled' : '' ?> type="text" value="<?= $_POST['masse']; ?>" name="masse" id="masse" class="form-control">
+            <br><input <?= $_POST['masse']; ?> type="text" value="<?= $_POST['masse']; ?>" name="masse" id="masse" class="form-control">
           </div>
 
           <div class="col-md-3">

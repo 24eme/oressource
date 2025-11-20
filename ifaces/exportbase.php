@@ -44,7 +44,7 @@ if (is_valid_session() && is_allowed_config()) {
   chdir($exportPath);
 
   # Name the sql dump file
-  $exportFileName = 'sauvegarde_oressource';
+  $exportFileName = 'export_oressource';
   $fileExtention = '.sql';
   $exportPathServer = $exportFileName . $fileExtention;
 
@@ -53,7 +53,7 @@ if (is_valid_session() && is_allowed_config()) {
 
   // Remove spaces from name and name the zip file
   $struct = strtolower(str_replace(" ", "_", $struct));
-  $fileZip = $exportFileName . '_' . $struct . '.zip';
+  $fileZip = $exportFileName . '_' . $struct . '_' . date("d-m-Y") . '.zip';
 
   $zip = new ZipArchive();
   if ($zip->open($fileZip, ZipArchive::CREATE)!== TRUE) {
@@ -67,7 +67,7 @@ if (is_valid_session() && is_allowed_config()) {
   unlink($exportPathServer);
 
   header("Content-Type: application/zip");
-  header("Content-disposition: attachment; filename=export_base.zip");
+  header("Content-disposition: attachment; filename=".$fileZip);
   header("Content-Length: $size");
   echo file_get_contents($fileZip);
   unlink($fileZip);

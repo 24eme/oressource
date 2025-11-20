@@ -85,11 +85,11 @@ if (array_key_exists('QUERY_STRING', $_SERVER) && str_contains($_SERVER['QUERY_S
             <?php if (is_allowed_vente()):?>
               <?php if (count(filter_visibles(points_ventes($bdd))) < 2):?>
                 <li class="<?php if ($activeTab == 'ventes.php'): ?>active<?php endif; ?>">
-                  <a href="../ifaces/ventes.php?numero=<?php echo filter_visibles(points_ventes($bdd))[0]['id'] ?>">Point de vente</a>
+                  <a href="../ifaces/ventes.php?numero=<?php echo filter_visibles(points_ventes($bdd))[0]['id'] ?>"></a>
                 </li>
               <?php else: ?>
               <li class="nav navbar-nav dropdown<?php if ($activeTab == 'ventes.php'): ?> active<?php endif; ?>">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Points de vente<b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="position: relative;">Points de vente<b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <?php foreach (filter_visibles(points_ventes($bdd)) as $point_vente): ?>
                       <?php if (is_allowed_vente_id($point_vente['id'])): ?>

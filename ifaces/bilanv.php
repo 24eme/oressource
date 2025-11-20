@@ -65,10 +65,7 @@ if (is_valid_session() && is_allowed_bilan()) {
 
   <div class="row">
     <div class="col-md-8">
-     <ol class="breadcrumb">
-        <li><a href="">Bilan global</a></li>
-        <li class="active"><a href="">Ventes</a></li>
-     </ol>
+
     </div>
     <div class="col-md-4">
       <div class="col-md-12" >
