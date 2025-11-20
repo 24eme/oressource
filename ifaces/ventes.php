@@ -241,7 +241,7 @@ if (is_valid_session() && is_allowed_vente_id($numero)) {
         <div class="col-md-6 text-left">
         <button id="encaissement" class="btn btn-success btn-lg btn-block" style="height: 60px;">Encaisser</button>
         </div>
-        <div class="col-md-2 text-center">
+        <div class="col-md-2 text-center" style="padding-right: 0; padding-left: 0;">
         <button id="impression" class="btn btn-primary btn-lg btn-block" style="height: 60px;"><span class="glyphicon glyphicon-print"></span></button>
         </div>
         <div class="col-md-4 text-right">
@@ -249,8 +249,8 @@ if (is_valid_session() && is_allowed_vente_id($numero)) {
                 data-target="#collapserembou" aria-expanded="false"
                 aria-controls="collapseExample">Remboursement</button>
         </div>
-        <div class="collapse" id="collapserembou">
-          <div class="well">
+        <div class="collapse col-md-12" id="collapserembou" style="margin-top: 15px;">
+          <div class="well" style="margin-bottom: 0;">
             <form action="../ifaces/remboursement.php?numero=<?= $numero ?>" method="post">
               <div class="input-group">
                 <input name="passrmb" id="passrmb" type="password" class="form-control" placeholder="Code remboursement caisse">

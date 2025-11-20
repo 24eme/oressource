@@ -213,7 +213,7 @@ pre {
 }
 
 #nav_main.navbar {
-  margin-bottom: 12px;
+  margin-bottom: 15px;
   padding: 12px;
 }
 
@@ -238,13 +238,12 @@ pre {
   box-shadow: 0px 2px 10px -3px rgba(0,0,0,0.1);
   border: 1px solid #ececec;
   border-radius: 6px;
-  margin-top: 12px;
+  margin-top: 15px;
   background: #fff;
 }
 
 #main {
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding: 20px;
   position: relative;
 }
 
