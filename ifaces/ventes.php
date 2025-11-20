@@ -241,7 +241,7 @@ if (is_valid_session() && is_allowed_vente_id($numero)) {
         <div class="col-md-6 text-left">
         <button id="encaissement" class="btn btn-success btn-lg btn-block" style="height: 60px;">Encaisser</button>
         </div>
-        <div class="col-md-2 text-center">
+        <div class="col-md-2 text-center" style="padding-right: 0; padding-left: 0;">
         <button id="impression" class="btn btn-primary btn-lg btn-block" style="height: 60px;"><span class="glyphicon glyphicon-print"></span></button>
         </div>
         <div class="col-md-4 text-right">
