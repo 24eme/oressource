@@ -70,8 +70,10 @@ if (is_valid_session() && is_allowed_sortie_id($numero)) {
     </div>
 
     <div class="col-md-4">
+      <div style="min-height: 441px;">
       <?= listSaisie(['text' => "Type d'objet:", 'key' => 'list_item']) ?>
       <?= listSaisie(['text' => 'Materiaux et déchets:', 'key' => 'list_evac']) ?>
+      </div>
       <?= buttonCollectesSorties() ?>
     </div> <!-- .col-md-4 -->
 

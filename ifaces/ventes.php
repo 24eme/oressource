@@ -61,7 +61,7 @@ if (is_valid_session() && is_allowed_vente_id($numero)) {
           -->
         </div>
 
-        <div class="panel-body" id="ticket" style="min-height: 386px;">
+        <div class="panel-body" id="ticket" style="min-height: 412px;">
           <?php if (is_allowed_saisie_date() && is_allowed_edit_date()) { ?>
             <label for="date">Date de la vente:</label>
             <input type="date" id="date" name="antidate" value="<?= date('Y-m-d'); ?>">
@@ -109,7 +109,7 @@ if (is_valid_session() && is_allowed_vente_id($numero)) {
     </div>
 
     <div class="col-md-3">
-      <div class="panel panel-info">
+      <div class="panel panel-info" style="width: 220px; margin: 0 auto;">
         <div class="panel-heading">
           <h3 class="panel-title">
             <label id="nom_objet">Objet:</label>
@@ -177,7 +177,7 @@ if (is_valid_session() && is_allowed_vente_id($numero)) {
         <div class="panel-heading">
           <h3 class="panel-title">Type d'objet:</h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" style="min-height: 355px;">
           <?php
           foreach ($dechets as $d) {
             $objs = array_filter($objets, function($e) use ($d) {

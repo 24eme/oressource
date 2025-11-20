@@ -181,7 +181,7 @@ function cartList(array $props) {
           <label id="massetot"><?= $props['text'] ?></label>
         </h3>
       </div>
-      <div class="panel-body">
+      <div class="panel-body" style="min-height: 386px;">
         <form id="formulaire" method="POST">
           <?php if (is_allowed_saisie_date() && is_allowed_edit_date()) { ?>
             <div>

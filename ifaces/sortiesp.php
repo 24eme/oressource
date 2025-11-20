@@ -42,10 +42,12 @@ if (is_valid_session() && is_allowed_sortie_id($numero)) {
     <?= configNav($nav) ?>
     <?= cartList(['text' => "Masse totale: 0 Kg.", 'date' => $date->format('Y-m-d')]) ?>
 
-    <div id="numpad" class="col-md-4" style="width: 220px;"></div>
+    <div id="numpad" class="col-md-4"></div>
 
     <div class="col-md-4">
+      <div style="min-height: 441px;">
       <?= listSaisie(['text' => 'Bacs de sortie des poubelles:', 'key' => 'list_poubelle']) ?>
+      </div>
       <?= buttonCollectesSorties() ?>
     </div> <!-- .col-md-4 -->
 
