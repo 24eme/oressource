@@ -78,7 +78,9 @@ if (is_valid_session()) {
   const current_version_published = new Date('2020-10-25T11:24:49Z');
   const greeting = `Bienvenue à bord d'Oressource ${current_version_number} ${user_name}!`;
   // Changement du mesage de bienvenue
-  document.querySelector('#bienvenue > h1:nth-child(1)').innerHTML = greeting;
+  if (document.querySelector('#bienvenue > h1:nth-child(1)')) {
+    document.querySelector('#bienvenue > h1:nth-child(1)').innerHTML = greeting;
+  }
 
   fetch(`https://api.github.com/repos/mart1ver/oressource/releases`, {
     method: "GET"
@@ -96,9 +98,9 @@ if (is_valid_session()) {
   La version ${latest.tag_name} d'Oressource est disponible !
   <a href="https://github.com/mart1ver/oressource/blob/master/UPGRADE.md">Comment mettre à jour ?</a>
 </div>`);
-        document
-          .getElementById('bienvenue')
-          .insertAdjacentHTML('afterbegin', html)
+        if (document.getElementById('bienvenue')) {
+            document.getElementById('bienvenue').insertAdjacentHTML('afterbegin', html);
+          }
       }
     });
     </script>
