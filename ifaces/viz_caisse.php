@@ -29,14 +29,12 @@ if (is_valid_session() && $_SESSION['viz_caisse'] && is_allowed_vente_id($numero
 
   $nb_viz_caisse = (int) ($_SESSION['nb_viz_caisse']);
   ?>
-
     <h1>Visualisation des <?= $nb_viz_caisse; ?> derniere ventes</h1>
     <p align="right">
-      <input class="btn btn-default btn-lg" type='button'name='quitter' value='Quitter' OnClick="window.close();"/></p>
+      <input class="btn btn-default btn-lg" type='button' value='Retour' OnClick="location.href='<?php echo explode('ifaces', $_SERVER['SCRIPT_NAME'])[0].'ifaces/ventes.php?numero='.$numero ?>';"/></p>
     <div class="panel-body">
       <br>
     </div>
-
     <table class="table">
       <thead>
         <tr>
