@@ -65,14 +65,14 @@ if (is_valid_session() && $_SESSION['viz_caisse'] && is_allowed_vente_id($numero
             <td><?= $vente['mail']; ?></td>
             <td>
               <?php if ($vente['credit'] > 0 && !($vente['debit'] > 0)) { ?>
-                <form action="viz_vente.php?nvente=<?= $vente['id']; ?>" method="post">
+                <form action="viz_vente.php?numero=<?php echo $numero;?>&nvente=<?= $vente['id']; ?>" method="post">
                   <input type="hidden" name="id" id="id" value="<?= $vente['id']; ?>">
                   <input type="hidden" name="npoint" id="npoint" value="<?= $numero; ?>">
                   <button class="btn btn-primary btn-sm" ><span class="glyphicon glyphicon-search"></span></button>
                 </form>
                 <?php
               } else { ?>
-                <form action="viz_remboursement.php?nvente=<?= $vente['id']; ?>" method="post">
+                <form action="viz_remboursement.php?numero=<?php echo $numero;?>&nvente=<?= $vente['id']; ?>" method="post">
                   <input type="hidden" name="id" id="id" value="<?= $vente['id']; ?>">
                   <input type="hidden" name="npoint" id="npoint" value="<?= $numero; ?>">
                   <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-search"></span></button>

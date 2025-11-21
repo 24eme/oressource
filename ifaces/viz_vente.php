@@ -55,10 +55,12 @@ ORDER BY
   $req->closeCursor();
 
   require_once 'tete.php';
+
+  $numero = filter_input(INPUT_GET, 'numero', FILTER_VALIDATE_INT);
   ?>
     <h1>Visualiser la vente n° <?= $_GET['nvente']; ?></h1>
     <p align="right">
-      <input class="btn btn-default btn-lg" type='button'name='quitter' value='Quitter' OnClick="window.close();"/></p>
+      <input class="btn btn-default btn-lg" type='button' value='Retour' OnClick="location.href='<?php echo explode('ifaces', $_SERVER['SCRIPT_NAME'])[0].'ifaces/viz_caisse.php?numero='.$numero ?>';"/></p>
     <div class="panel-body">
       <br>
 
