@@ -18,6 +18,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+require_once '../core/session.php';
 
  function parms($string,$data) {
   $indexed=$data==array_values($data);
@@ -29,7 +30,6 @@
   return $string;
 }
 
-session_start();
 if (isset($_SESSION['id']) && $_SESSION['systeme'] === 'oressource' && (strpos($_SESSION['niveau'], 'h') !== false)) {
   require_once '../moteur/dbconfig.php';
   $req = $bdd->prepare('UPDATE vendus SET

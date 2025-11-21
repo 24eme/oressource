@@ -17,8 +17,6 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 // Oressource 2017, Bilan des ventes
-session_start();
-
 require_once '../core/session.php';
 require_once '../core/requetes.php';
 require_once '../core/composants.php';

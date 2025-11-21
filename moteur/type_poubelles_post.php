@@ -21,8 +21,6 @@
 
 require_once __DIR__ . '/../core/session.php';
 
-session_start();
-
 if (is_valid_session() && is_allowed_gestion()) {
   require_once '../moteur/dbconfig.php';
   try {

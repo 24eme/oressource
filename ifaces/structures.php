@@ -20,8 +20,6 @@
 
 // Modification de la configuration des structures
 
-session_start();
-
 require_once('../core/session.php');
 require_once('../core/requetes.php');
 require_once('../core/composants.php');

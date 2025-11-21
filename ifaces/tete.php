@@ -35,7 +35,7 @@ $can_config = is_allowed_config();
 $nav = filter_visibles(new_nav_sorties());
 
 $activeTab = explode('/ifaces/', $_SERVER['PHP_SELF'])[1];
-if (array_key_exists('QUERY_STRING', $_SERVER) && str_contains($_SERVER['QUERY_STRING'], 'numero=')) {
+if (array_key_exists('QUERY_STRING', $_SERVER) && strpos($_SERVER['QUERY_STRING'], 'numero=') !== false) {
   $activeNumber = explode('numero=', $_SERVER['QUERY_STRING'])[1];
 }
 ?>

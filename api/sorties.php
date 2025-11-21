@@ -171,7 +171,6 @@ function insert_sortie(PDO $bdd, array $sortie): int {
   return (int) $bdd->lastInsertId();
 }
 
-session_start();
 header("content-type:application/json");
 
 if (is_valid_session()) {
