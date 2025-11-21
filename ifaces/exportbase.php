@@ -58,7 +58,7 @@ if (is_valid_session() && is_allowed_config()) {
     header("Location:structures.php?err=Probleme pendant le zippage du fichier");
     exit;
   }
-  $zip->addFile($exportPathServer, $struct . '_' . date("d-m-Y").'.sql');
+  $zip->addFile($exportPathServer, $exportFileName . '_' . $struct . '_' . date("d-m-Y") . '.sql');
   $zip->close();
 
   // Delete sql file
