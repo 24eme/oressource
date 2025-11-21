@@ -76,7 +76,7 @@ if (array_key_exists('QUERY_STRING', $_SERVER) && strpos($_SERVER['QUERY_STRING'
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../ifaces/index.php"><img src="/images/logo_oressource.svg" class="hidden-md hidden-sm hidden-xs"><img src="/images/logo_or.svg" class="hidden-lg"></a>
+          <a class="navbar-brand" href="../ifaces/index.php"><img height=40 src="../images/logo_oressource.png" class="hidden-md hidden-sm hidden-xs"><img src="../images/logo_or.png" class="hidden-lg"></a>
         </div>
 
         <div class="navbar-collapse collapse navbar-right">

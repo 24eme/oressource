@@ -34,7 +34,7 @@ require_once("../core/session.php");
   <body>
     <div class="wrapper">
       <form id="formLogin" class="form-signin" method="post" style="box-shadow: 0px 2px 10px -3px rgba(0,0,0,0.1); border-radius: 6px;">
-        <img src="/images/logo_oressource.svg" style="text-align: center; width: 100%; margin-top: 20px;">
+        <img src="../images/logo_oressource.png" height=40 style="text-align: center; margin-top: 20px;">
         <h2 class="form-signin-heading" style="margin-top: 40px;">Veuillez vous connecter</h2>
         <label class="sr-only" for="mail">Mail :</label>
         <input id="mail" class="form-control" name="mail" type="email" placeholder="Courriel" autofocus>
