@@ -417,7 +417,7 @@ function add() {
   if (state.last !== undefined) {
     const { prix, quantite, masse } = get_numpad();
     if (quantite > 0 && !Number.isNaN(prix) && prix>0 && !Number.isNaN(masse) && masse>=0) {
-      document.getElementById('message').textContent= "\u00a0";
+      document.getElementById('message').textContent= "";
 
       const current = state.last;
       state.last = undefined;
