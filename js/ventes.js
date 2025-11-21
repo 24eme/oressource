@@ -416,7 +416,7 @@ function update_recap(totalPrice, totalQuantity) {
 function add() {
   if (state.last !== undefined) {
     const { prix, quantite, masse } = get_numpad();
-    if (quantite > 0 && !Number.isNaN(prix) && prix>0 && !Number.isNaN(masse) && masse>=0) {
+    if (quantite > 0 && !Number.isNaN(prix)) {
       document.getElementById('message').textContent= "";
 
       const current = state.last;
