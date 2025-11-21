@@ -1,3 +1,6 @@
+<?php
+require_once("../core/session.php");
+?>
 <!DOCTYPE html>
 <!--
   Oressource

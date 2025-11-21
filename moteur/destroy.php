@@ -21,4 +21,4 @@
 require_once('../core/session.php');
 
 destroy_session();
-header('Location: ../ifaces/login.html');
+header('Location: ../ifaces/login.php');

@@ -171,5 +171,5 @@ if (is_valid_session()) {
   <?php
   require_once 'pied.php';
 } else {
-  header('Location: ./login.html');
+  header('Location: ./login.php');
 }

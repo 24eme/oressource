@@ -60,7 +60,7 @@ class MouvementsUITest extends TestCase {
         $page = $browser->newPage(); 
 
         $commentaire=$this->faker->sentence();
-        $page->goto($_ENV['URL'].'/ifaces/login.html');
+        $page->goto($_ENV['URL'].'/ifaces/login.php');
         $page->getByRole('textbox', [ 'name'=> 'Mail :' ])->fill($_ENV['ADMIN_MAIL']);
         $page->getByRole('textbox', [ 'name'=> 'Mot de passe :=' ])->fill($_ENV['ADMIN_PASS']);
         $page->getByRole('textbox', [ 'name'=> 'Mot de passe :=' ])->press('Enter');
@@ -108,7 +108,7 @@ class MouvementsUITest extends TestCase {
         $page = $browser->newPage(); 
 
         $commentaire=$this->faker->sentence();
-        $page->goto($_ENV['URL'].'/ifaces/login.html');
+        $page->goto($_ENV['URL'].'/ifaces/login.php');
         $page->getByRole('textbox', [ 'name'=> 'Mail :' ])->fill($_ENV['ADMIN_MAIL']);
         $page->getByRole('textbox', [ 'name'=> 'Mot de passe :=' ])->fill($_ENV['ADMIN_PASS']);
         $page->getByRole('textbox', [ 'name'=> 'Mot de passe :=' ])->press('Enter');
@@ -172,7 +172,7 @@ class MouvementsUITest extends TestCase {
         $page = $browser->newPage(); 
 
         $commentaire=$this->faker->sentence();
-        $page->goto($_ENV['URL'].'/ifaces/login.html');
+        $page->goto($_ENV['URL'].'/ifaces/login.php');
         $page->getByRole('textbox', [ 'name'=> 'Mail :' ])->fill($_ENV['ADMIN_MAIL']);
         $page->getByRole('textbox', [ 'name'=> 'Mot de passe :=' ])->fill($_ENV['ADMIN_PASS']);
         $page->getByRole('textbox', [ 'name'=> 'Mot de passe :=' ])->press('Enter');
