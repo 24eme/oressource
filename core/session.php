@@ -18,7 +18,13 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
- session_start();
+global $oressource_instance_name;
+$oressource_session_name = 'oressource';
+if ($oressource_instance_name) {
+  $oressource_session_name = 'oressource_'.$oressource_instance_name;
+}
+session_name($oressource_session_name);
+session_start();
 
 global $_SESSION;
 
