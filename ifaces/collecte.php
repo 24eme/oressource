@@ -27,8 +27,6 @@ require_once '../core/requetes.php';
 require_once '../core/session.php';
 require_once '../core/composants.php';
 
-session_start();
-
 $numero = filter_input(INPUT_GET, 'numero', FILTER_VALIDATE_INT);
 
 if (is_valid_session() && is_allowed_collecte_id($numero)) {

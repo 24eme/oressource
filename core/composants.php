@@ -18,6 +18,7 @@
  */
 
 require_once __DIR__ . '/validation.php';
+require_once __DIR__ . '/session.php';
 
 /* Fonction utile pour la nav des sorties. */
 
@@ -444,8 +445,6 @@ function configModif(array $props): string {
 function page_config3(array $props, callable $droits) {
   require_once 'session.php';
   require_once 'requetes.php';
-
-  session_start();
 
   if (is_valid_session() && $droits()) {
     global $bdd;

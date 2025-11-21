@@ -20,7 +20,6 @@
 // Oressource 2014, formulaire de référencement des filières de sortie (entreprises de recyclage, associations, etc) en lien avec la structure
 // Simple formulaire de saisie qui permet de lister des filières de sortie déjà référencées et s'accompagne de la possibilité de les cacher à l'utilisateur ou d'en modifier les données
 
-session_start();
 require_once '../moteur/dbconfig.php';
 require_once '../core/composants.php';
 require_once '../core/requetes.php';

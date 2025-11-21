@@ -18,9 +18,6 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-session_start();
-
-
 require_once __DIR__ . '/../core/session.php';
 require_once __DIR__ . '/../core/requetes.php';
 require_once __DIR__ . '/../core/validation.php';

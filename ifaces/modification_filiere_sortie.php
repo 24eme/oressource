@@ -20,8 +20,6 @@
 require_once '../core/requetes.php';
 require_once '../core/session.php';
 
-session_start();
-
 if (is_valid_session() && is_allowed_partners()) {
   require_once '../moteur/dbconfig.php';
   require_once 'tete.php';

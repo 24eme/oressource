@@ -20,8 +20,6 @@
 // Simple formulaire de saisie des matieres d'ouevres sortantes de la structure. (structures partenaires, conventiionnées)
 // Doit etre fonctionnel avec un ecran tactille.
 
-session_start();
-
 require_once '../core/requetes.php';
 require_once '../core/session.php';
 require_once '../core/composants.php';

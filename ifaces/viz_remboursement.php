@@ -17,20 +17,14 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
  */
-session_start();
-
-
-
-
 
 require_once '../core/requetes.php';
 require_once '../core/session.php';
 
-if (is_valid_session() && is_allowed_verifications() && $_SESSION['viz_caisse'])  {
-
-
-
-
+if (!is_valid_session() || !is_allowed_verifications() || !isset($_SESSION['viz_caisse']) || !$_SESSION['viz_caisse'])  {
+  header('Location: ../moteur/destroy.php');
+  exit;
+}
 
 require_once('../moteur/dbconfig.php');
 
@@ -100,7 +94,3 @@ $numero = filter_input(INPUT_GET, 'numero', FILTER_VALIDATE_INT);
     </table>
   <?php
   require_once 'pied.php';
-} else {
-  header('Location: ../moteur/destroy.php');
-}
-?>

@@ -19,9 +19,9 @@ declare(strict_types = 1);
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once 'session.php';
+require_once __DIR__ . '/session.php';
+
 function serve_config(string $endpoint, string $msg, callable $function) {
-  session_start();
   if (is_valid_session() && is_allowed_config()) {
     global $bdd;
     require_once '../moteur/dbconfig.php';
