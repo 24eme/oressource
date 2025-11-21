@@ -21,7 +21,11 @@ require_once('../moteur/dbconfig.php');
 require_once('../core/session.php');
 require_once('../core/requetes.php');
 
-if (is_valid_session()) {
+if (!is_valid_session() || !is_allowed_bilan()) {
+  header('Location: ../moteur/destroy.php');
+  exit;
+}
+
   require_once 'tete.php';
 
   $validUser = is_allowed_bilan();
@@ -170,6 +174,3 @@ if (is_valid_session()) {
   </script>
   <?php
   require_once 'pied.php';
-} else {
-  header('Location: ./login.php');
-}

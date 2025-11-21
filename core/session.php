@@ -18,6 +18,8 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+require_once __DIR__.'/../moteur/dbconfig.php';
+
 global $oressource_instance_name;
 $oressource_session_name = 'oressource';
 if ($oressource_instance_name) {
