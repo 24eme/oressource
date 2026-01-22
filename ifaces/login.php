@@ -70,8 +70,7 @@ require_once("../core/session.php");
             body: JSON.stringify({ username, password })
           }).then(status)
                   .then((json) => {
-                    // redirection vers l'espace vente numero 1 (= premier point de vente).
-                    window.location.href = '../ifaces/ventes.php?numero=1';
+                    window.location.href = '../ifaces/welcome.php';
                   }).catch((ex) => {
             div.setAttribute('style', 'width:80%; margin:auto; visibility: visible; display: block');
           });
