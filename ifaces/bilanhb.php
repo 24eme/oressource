@@ -40,21 +40,25 @@ function sortie_type(string $type): string {
 }
 
 function bilansSortiesRepartition(PDO $bdd, int $id, $start, $fin): array {
-  $numero = ($id > 0 ? " AND sorties.id_point_sortie = $id " : ' ');
+  $numero = ($id > 0 ? " AND sorties.id_point_sortie = $id " : '');
+
   $sql = 'SELECT
-    SUM(pesees_sorties.masse) somme,
+    SUM(pesees_sorties.masse) AS somme,
     sorties.classe,
-    COUNT(distinct sorties.id) ncol
-  FROM
-    pesees_sorties, sorties
-  WHERE
-    pesees_sorties.timestamp BETWEEN :du AND :au
-  AND pesees_sorties.id_sortie = sorties.id ' . $numero . '
-  GROUP BY sorties.classe';
+    type_dechets.nom AS type_dechet,
+    COUNT(DISTINCT sorties.id) AS ncol
+  FROM pesees_sorties
+  JOIN sorties ON pesees_sorties.id_sortie = sorties.id
+  LEFT JOIN type_dechets ON pesees_sorties.id_type_dechet = type_dechets.id
+  WHERE pesees_sorties.timestamp BETWEEN :du AND :au
+  ' . $numero . '
+  GROUP BY sorties.classe, type_dechets.nom';
+
   $stmt = $bdd->prepare($sql);
   $stmt->bindParam(':du', $start, PDO::PARAM_STR);
   $stmt->bindParam(':au', $fin, PDO::PARAM_STR);
   $stmt->execute();
+
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -269,14 +273,15 @@ if (is_valid_session() && is_allowed_bilan()) {
     <div class="col-md-5 col-md-offset-1">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Répartition par classe de sorties</h3>
+          <h3 class="panel-title">Répartition par classe de sorties et par type</h3>
         </div>
 
         <div class="panel-body">
           <table class="table table-condensed table-striped table table-bordered table-hover" style="border-collapse:collapse;">
             <thead>
               <tr>
-                <th style="width:300px">Classe:</th>
+                <th style="width:100px">Classe</th>
+                <th style="width:200px">Type</th>
                 <th>Nbr.de bons de sortie</th>
                 <th>Masse évacuée</th>
                 <th>%</th>
@@ -286,6 +291,7 @@ if (is_valid_session() && is_allowed_bilan()) {
               <?php foreach ($data['repartitions'] as $rep) { ?>
                 <tr data-toggle="collapse" data-target=".parmasse<?php echo $rep['classe'] ?>">
                   <td><?php echo sortie_type($rep['classe']) ?></td>
+                  <td><?php echo $rep['type_dechet'] ?></td>
                   <td><?php echo $rep['ncol'] ?></td>
                   <td><?php echo $rep['somme'] ?></td>
                   <td><?php echo round($rep['somme'] * 100 / $data['masse'], 2); ?></td>
