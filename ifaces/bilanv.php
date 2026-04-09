@@ -145,16 +145,6 @@ if (is_valid_session() && is_allowed_bilan()) {
                 </tbody>
 
                 <tfoot>
-                  <!--
-                  <tr>
-                    <td align=center colspan=3>
-                      <a href="../moteur/export_bilanv.php?numero=<?php echo $numero; ?>&<?php echo $date_query; ?>">
-                        <button type="button" class="btn btn-default btn-xs">Exporter les ventes de cette période (.csv)</button>
-                      </a>
-                    </td>
-                  </tr>
-                  -->
-                  <br>
                 </tfoot>
               </table>
 
@@ -292,6 +282,12 @@ if (is_valid_session() && is_allowed_bilan()) {
       </div>
     </div>
   </div>
+
+<div class="pull-right">
+      <a href="../moteur/export_bilanv.php?numero=<?php echo $numero; ?>&<?php echo $date_query; ?>">
+        <button type="button" class="btn btn-default btn-xs">Exporter les ventes de cette période (.csv)</button>
+      </a>
+</div>
 
   <script type="text/javascript">
     'use strict';

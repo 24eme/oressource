@@ -35,26 +35,42 @@ if (isset($_SESSION['id']) && $_SESSION['systeme'] === 'oressource' && (strpos($
   $time_fin = $date2ft->format('Y-m-d');
   $time_fin .= ' 23:59:59';
 
-  // on affiche la periode visée
-  if ($date1 === $date2) {
-    $nomfic = "bilan_vente_$date1.csv";
-    $xls_output = "Le $date1";
-  } else {
-    $nomfic = "bilan_vente_${date1}_au_$date2.csv";
-    $xls_output = "Du $date1 au $date2";
+  $nomfic = 'oressource_bilanventes';
+  if ($numero == 0) {
+    $nomfic .= '_global_';
+  }else{
+    $nomfic .= '_pointdevente-'.$numero.'_';
   }
 
-  //  if ($numero == 0) {
-  $xls_output .= "\nPour tous les points de vente\n\n";
+  // on affiche la periode visée
+  if ($date1 === $date2) {
+    $nomfic .= "$date1.csv";
+  } else {
+    $nomfic .= "${date1}_au_$date2.csv";
+  }
+
   //Ligne des noms des champs
-  $xls_output .= "Réf\tRéf moyen de paiement\tDate\tAdhérent ?\tCommentaire\tRéf point de vente\tPoint de vente\tRéf vendeur\tNbx d'obj\tTotal quantités\tTotal prix\tTotal remboursement\n";
+  $xls_output .= "Réf;Réf moyen de paiement;Date;Commentaire;Réf point de vente;Point de vente;Réf vendeur;Nbx d'obj;Total quantités;Total prix;Total remboursement\n";
   //  }
-  $req = $bdd->prepare('SELECT ventes.id, id_moyen_paiement, ventes.timestamp, adherent, ventes.commentaire, id_point_vente, nom, ventes.id_createur, count(vendus.id), sum(quantite), sum(prix*quantite),sum(remboursement)
+  $req = $bdd->prepare('SELECT ventes.id, id_moyen_paiement, ventes.timestamp, ventes.commentaire, id_point_vente, nom, ventes.id_createur, count(vendus.id), sum(quantite), sum(prix*quantite),sum(remboursement)
     FROM ventes, vendus,points_vente WHERE DATE(ventes.timestamp) BETWEEN :du AND :au AND id_vente=ventes.id AND id_point_vente=points_vente.id GROUP BY ventes.id');
   $req->execute([':du' => $time_debut, ':au' => $time_fin]);
   while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
-    $xls_output .= implode("\t", array_slice($donnees, 0, -2));
-    $xls_output .= str_replace('.', ',', $donnees['sum(prix*quantite)']) . "\t";
+    $donnees = array_map(function($k) {
+          if (is_numeric($k)) {
+            $k = str_replace('.', ',', $k);
+          }
+          $k = str_replace(';', ',', $k);
+          $k = str_replace('"', ' ', $k);
+          if (strpos($k, "'") !== false) {
+            $k = '"'.$k.'"';
+          }
+          return $k;
+        }
+      , $donnees);
+    $xls_output .= implode(";", array_slice($donnees, 0, -2));
+    $xls_output .= ';';
+    $xls_output .= str_replace('.', ',', $donnees['sum(prix*quantite)']) . ";";
     $xls_output .= str_replace('.', ',', $donnees['sum(remboursement)']) . "\n";
   }
   $req->closeCursor();
