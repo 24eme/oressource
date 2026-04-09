@@ -20,7 +20,11 @@
 
 require_once '../core/session.php';
 
-if (isset($_SESSION['id']) && $_SESSION['systeme'] === 'oressource' && (strpos($_SESSION['niveau'], 'bi') !== false)) {
+if (!(isset($_SESSION['id']) && $_SESSION['systeme'] === 'oressource' && (strpos($_SESSION['niveau'], 'bi') !== false))) {
+  header('Location:../moteur/destroy.php');
+  exit();
+}
+
   require_once '../moteur/dbconfig.php';
 
   $numero = htmlspecialchars($_GET['numero']);
@@ -48,9 +52,8 @@ if (isset($_SESSION['id']) && $_SESSION['systeme'] === 'oressource' && (strpos($
   } else {
     $nomfic .= "${date1}_au_$date2.csv";
   }
-
   //Ligne des noms des champs
-  $xls_output .= "Réf;Réf moyen de paiement;Moyen de paiement;Date;Commentaire;Réf point de vente;Point de vente;Réf vendeur;Nbx d'obj;Total quantités;Total prix;Total remboursement\n";
+  $xls_output = "Réf;Réf moyen de paiement;Moyen de paiement;Date;Commentaire;Réf point de vente;Point de vente;Réf vendeur;Nbx d'obj;Total quantités;Total prix;Total remboursement\n";
   //  }
   $req = $bdd->prepare('SELECT ventes.id, id_moyen_paiement, moyens_paiement.nom as moyen_paiement, ventes.timestamp, ventes.commentaire, id_point_vente, points_vente.nom, ventes.id_createur, count(vendus.id), sum(quantite), sum(prix*quantite),sum(remboursement)
     FROM ventes INNER JOIN vendus ON id_vente=ventes.id INNER JOIN points_vente ON id_point_vente = points_vente.id INNER JOIN moyens_paiement ON moyens_paiement.id = ventes.id_moyen_paiement WHERE DATE(ventes.timestamp) BETWEEN :du AND :au GROUP BY ventes.id');
@@ -78,6 +81,3 @@ if (isset($_SESSION['id']) && $_SESSION['systeme'] === 'oressource' && (strpos($
   header('Content-type: text/csv');
   header('Content-disposition: attachment; filename=' . $nomfic);
   echo $xls_output;
-} else {
-  header('Location:../moteur/destroy.php');
-}
