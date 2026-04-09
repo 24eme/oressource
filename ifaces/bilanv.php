@@ -286,6 +286,9 @@ if (is_valid_session() && is_allowed_bilan()) {
 <div class="pull-right">
       <a href="../moteur/export_bilanv.php?numero=<?php echo $numero; ?>&<?php echo $date_query; ?>">
         <button type="button" class="btn btn-default btn-xs">Exporter les ventes de cette période (.csv)</button>
+      </a> <br/>
+      <a href="../moteur/export_bilanv_objets.php?numero=<?php echo $numero; ?>&<?php echo $date_query; ?>">
+        <button type="button" class="btn btn-default btn-xs">Exporter les articles vendus de cette période (.csv)</button>
       </a>
 </div>
 
