@@ -37,38 +37,18 @@ if (is_valid_session() && is_allowed_config()) {
   # Get the ressourcerie name provided in database
   $struct = structure($bdd)['nom'];
 
-  # Go into the ./mysql folder
-  $exportPath = '../mysql/';
-  chdir($exportPath);
+  $exportPath = '/tmp/';
+  $exportFileName = 'export_oressource_';
+  $exportPathServer = tempnam($exportPath, $exportFileName);
 
-  # Name the sql dump file
-  $exportFileName = 'export_oressource';
-  $fileExtention = '.sql';
-  $exportPathServer = $exportFileName . $fileExtention;
-
-  # Dump the database via mysqldump (provided by mysql-client)
   $worked = exec("mysqldump --opt --host=$host --user=$user --password=$pass $base > \"$exportPathServer\"");
 
-  // Remove spaces from name and name the zip file
   $struct = strtolower(str_replace(" ", "_", $struct));
-  $fileZip = $exportFileName . '_' . $struct . '_' . date("d-m-Y") . '.zip';
 
-  $zip = new ZipArchive();
-  if ($zip->open($fileZip, ZipArchive::CREATE)!== TRUE) {
-    header("Location:structures.php?err=Probleme pendant le zippage du fichier");
-    exit;
-  }
-  $zip->addFile($exportPathServer, $exportFileName . '_' . $struct . '_' . date("d-m-Y") . '.sql');
-  $zip->close();
-
-  // Delete sql file
+  header("Content-Type: application/sql");
+  header("Content-disposition: attachment; filename=".$exportFileName.$struct);
+  echo file_get_contents($exportPathServer);
   unlink($exportPathServer);
-
-  header("Content-Type: application/zip");
-  header("Content-disposition: attachment; filename=".$fileZip);
-  header("Content-Length: $size");
-  echo file_get_contents($fileZip);
-  unlink($fileZip);
 } else {
   header('Location:../moteur/destroy.php');
 }
