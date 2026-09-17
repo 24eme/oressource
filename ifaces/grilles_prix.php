@@ -53,7 +53,9 @@ if (is_valid_session() && is_allowed_gestion() && $type_obj !== false) {
           </div>
           <div class="col-lg-3">
             <label for="prix">Prix:</label>
-            <input id="prix" class="form-control" type="text" placeholder="prix" name="prix" required>
+            <input id="prix" class="form-control" type="text" placeholder="prix" name="prix" pattern="[0-9]+([,.][0-9]+)?" required
+       oninput="this.value = this.value.replace(/[^0-9,.]/g, '')">
+
             <input class="form-control" type="hidden" value="<?= $type_obj; ?>" name="typo">
           </div>
           <div class="col-lg-3">

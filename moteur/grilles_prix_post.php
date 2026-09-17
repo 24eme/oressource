@@ -23,6 +23,7 @@ require_once '../core/session.php';
 if (is_valid_session() && is_allowed_gestion()) {
   require_once '../moteur/dbconfig.php';
   try {
+    $_POST['prix'] = str_replace(',', '.', $_POST['prix']);
     $req = $bdd->prepare('INSERT INTO grille_objets (nom,  prix, description, id_type_dechet, id_createur, id_last_hero) VALUES(?, ?, ?, ?, ?, ?)');
     $req->execute([$_POST['nom'], $_POST['prix'], $_POST['description'], $_POST['typo'], $_SESSION['id'], $_SESSION['id']]);
     $req->closeCursor();
