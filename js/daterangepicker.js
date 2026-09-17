@@ -58,7 +58,7 @@
                       '<label for="daterangepicker_end"></label>' +
                       '<input class="input-mini" type="text" name="daterangepicker_end" value="" />' +
                     '</div>' +
-                    '<button class="applyBtn" disabled="disabled"></button>&nbsp;' +
+                    '<button class="applyBtn" style="margin-bottom:5px;" disabled="disabled"></button>&nbsp;' +
                     '<button class="cancelBtn"></button>' +
                   '</div>' +
                 '</div>' +
