@@ -35,6 +35,7 @@ require_once 'validation.php';
 // Appellée au login.
 function set_session(array $user, array $structure) {
   $_SESSION['systeme'] = 'oressource';
+  $_SESSION['instance'] = explode('/', $_SERVER['REQUEST_URI'])[1];
   $_SESSION['id'] = $user['id'];
   $_SESSION['niveau'] = $user['niveau'];
   $_SESSION['nom'] = $user['nom'];
@@ -78,7 +79,7 @@ function ventes_lots(): bool {
  * Renvoie `true` si la session est valide.
  */
 function is_valid_session(): bool {
-  return isset($_SESSION['id']) && $_SESSION['systeme'] === 'oressource';
+  return isset($_SESSION['id']) && $_SESSION['systeme'] === 'oressource' && $_SESSION['instance'] === explode('/', $_SERVER['REQUEST_URI'])[1];
 }
 
 function affichage_sortie_don(): bool {
