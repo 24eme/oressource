@@ -90,14 +90,14 @@ function setDatepicker(dateInterval) {
     timePicker12Hour: true,
     ranges: {
       "Aujourd'hui": [ moment(), moment() ],
-      hier: [ moment().subtract(1, 'days'), moment().subtract(1, 'days') ],
+      'Hier': [ moment().subtract(1, 'days'), moment().subtract(1, 'days') ],
       '7 derniers jours': [ moment().subtract(6, 'days'), moment() ],
       '30 derniers jours': [ moment().subtract(29, 'days'), moment() ],
       'Ce mois': [
         moment().startOf('month'),
         moment().endOf('month'),
       ],
-      'Le mois deriner': [
+      'Le mois dernier': [
         moment().subtract(1, 'month').startOf('month'),
         moment().subtract(1, 'month').endOf('month'),
       ],
