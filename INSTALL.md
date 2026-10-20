@@ -21,7 +21,7 @@ serveur web tel que `ngnix`. De même `mariadb` remplace très bien `mysql`.
 
 ```shell
 cd ~
-git clone http://github.com/mart1ver/oressource.git
+git clone http://github.com/24eme/oressource.git
 ```
 
 ## MariaDB/MySQL
